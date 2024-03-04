@@ -1,0 +1,126 @@
+﻿@model List<CloudgenProject.Models.admin.manage_sequence>
+
+@{
+    ViewBag.Title = "view_sequence";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .adv-title {
+        background: #495057;
+        padding: 9px 0px;
+        color: #fff;
+        font-size: 19px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .content-body .container-fluid {
+        padding: 15px 29px 0;
+    }
+
+    .form-control {
+        height: 35px !important;
+        border: 1px solid #88c3d8;
+    }
+
+    .adv-title {
+        padding: 5px !important;
+        margin-bottom: 3px !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="padding-top:0px" ;>
+                    <div class="form-group row justify-content-md-center" style="background-color:#495057; ">
+                        <h2 class="adv-title">View SubAdmin List</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No.</th>
+                                    <th>Branch</th>
+                                    <th>Quotation Prefix No</th>
+                                    <th>QuotationNo</th>
+                                    <th>Sale Book PrefixNo</th>
+                                    <th>PI Prefix No</th>
+                                    <th>PINo</th>
+                                    <th>PO Prefix No</th>
+                                    <th>PO No</th>
+                                    <th>Invoice Prefix No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black; ">
+                                @{
+                                    int i = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.Branch</td>
+                                            <td>@item.QuotationPrefixNo</td>
+                                            <td>@item.QuotationNo</td>
+                                            <td>@item.SaleBookPrefixNo</td>
+                                            <td>@item.PIPrefixNo</td>
+                                            <td>@item.PINo</td>
+                                            <td>@item.POPrefixNo</td>
+                                            <td>@item.PONo</td>
+                                            <td>@item.InvoicePrefixNo</td>
+                                            <td>
+                                                @*<a href="/admin/add_sequence?id=@(item.id)" class="btn btn-success" style="width:50px"><i class="fas fa-edit"></i></a> ||
+                                                <a href="/admin/delet_sequence?id=@(item.id)" class="btn btn-danger " style="width:50px"> <i class="fas fa-solid fa-trash"></i></a>*@
+
+                                                <a class="btn btn-link" href="/admin/add_sequence?id=@(item.id)" title="Edit"> <img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a>|
+                                                <a class="btn btn-link delete-id" href="#" data-id="@item.id" title="Delete">
+                                                    <img src="~/Contents/images/Delete.png" style="width:15px; height:15px" />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        // Add a click event handler to the delete button with the class "delete-id"
+        $('.delete-id').click(function (e) {
+            e.preventDefault();
+
+            // Get the school ID from the data attribute
+            var Id = $(this).data('id');
+
+            // Show a confirmation dialog using Swal
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes," proceed with the deletion
+                    window.location.href = '/admin/delet_sequence?id=' + Id;
+                }
+            });
+        });
+    });
+</script>

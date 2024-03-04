@@ -1,0 +1,250 @@
+﻿@model CloudgenProject.Models.admin.manage_dashboard
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .custom-card {
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa; /* Light gray background color */
+    }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-card .card-body {
+            padding: 0;
+        }
+
+    .custom-card-link {
+        text-decoration: none;
+    }
+
+    .custom-card .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .custom-card .display-5 {
+        font-size: 24px;
+    }
+
+    .custom-card .opacity-5 {
+        opacity: 0.5;
+    }
+
+    /* Custom colors for cards */
+    .custom-gradient-1 {
+        /*background: linear-gradient(to right, #21acb1, #c5f0f7);*/
+        background: linear-gradient(to right, #fffff, #fffff);
+    }
+
+    /*.custom-gradient-2 {
+            background: linear-gradient(to right, #256ec3, #a0c5f5);
+        }*/
+
+    .custom-gradient-2 {
+        background: linear-gradient(to right, #256ec3, #a0c5f5);
+    }
+
+    .custom-gradient-3 {
+        background: linear-gradient(to right,#ff5e5e, #efb7b7); /* Blue to light blue gradient */
+    }
+
+    .custom-gradient-4 {
+        background: linear-gradient(to right, #182ca7, #b8b6ef);
+    }
+
+    .custom-gradient-5 {
+        /* background: linear-gradient(to right, #2e150f, #583a32);*/ /* Orange to yellow gradient */
+        background: linear-gradient(to right, #7a3b2b, #583a32);
+    }
+
+    .custom-gradient-6 {
+        background: linear-gradient(to right, #857105, #e1d17b); /* Magenta to gold gradient */
+    }
+
+    .custom-gradient-7 {
+        background: linear-gradient(to right, #76003b, #e56aa7); /* Purple to pink gradient */
+    }
+
+    .custom-gradient-8 {
+        background: linear-gradient(to right, #0f4881, #0cf3f3); /* Sky blue to cyan gradient */
+    }
+
+    .custom-card .fa {
+        font-size: 52px;
+        /*        margin-top: 10px;
+    */ /*color: #fff;*/ /* Icon color */
+        transition: all 0.3s ease; /* Icon movement transition */
+    }
+
+    /* Icon movement on hover */
+    .custom-card:hover .fa {
+        transform: translateY(-5px);
+        color: black;
+    }
+
+    .icon-color {
+        color: blue; /* Change this to the color you desire */
+    }
+</style>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            <a href="/Admin/viewleadsheetlist" class="custom-card-link">
+                <div class="card custom-card custom-gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title">Lead List </h3>
+                        <div class="d-inline-block">
+                            <h2>@*@Model.total_lead*@</h2>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-address-book" style="color: #ff5e5e"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <a href="/admin/view_assignedlead" class="custom-card-link">
+                <div class="card custom-card custom-gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title">Follow Up</h3>
+                        <div class="d-inline-block">
+                            <h2></h2>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-bell" style="color: #857105"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!--<div class="col-lg-3 col-sm-6">
+            <a href="/admin/addLeadManualyBySalesMan" class="custom-card-link">
+                <div class="card custom-card custom-gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title">Add Lead </h3>
+                        <div class="d-inline-block">
+                            <h2>-->@*@Model.total_pi*@<!--</h2>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-bar-chart" style="color: #76003b"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>-->
+        <div class="col-lg-4 col-sm-6">
+            <a href="/admin/view_quotation" class="custom-card-link">
+                <div class="card custom-card custom-gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title">Quotation List </h3>
+                        <div class="d-inline-block">
+                            <h2>@*@Model.total_po*@</h2>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-heart" style="color: #0f4881"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <!--<div class="row">-->
+    <!-- Left col -->
+    <!--<section class="col-lg-7 connectedSortable">-->
+    <!-- Custom tabs (Charts with tabs)-->
+    <!--<div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Sales
+            </h3>
+            <div class="card-tools">
+                <ul class="nav nav-pills ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
+    <!-- /.card-header -->
+    <!--<div class="card-body">
+        <div class="tab-content p-0">-->
+    <!-- Morris chart - Sales -->
+    <!--<div class="chart tab-pane active" id="revenue-chart"
+                 style="position: relative; height: 300px;">
+                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+            </div>
+            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>-->
+    <!-- /.card-body -->
+    <!--</div>-->
+    <!-- /.card -->
+    <!--</section>-->
+    <!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <!--<section class="col-lg-5 connectedSortable">-->
+    <!-- Map card -->
+    <!--<div class="card bg-gradient-primary">
+        <div class="card-header border-0">
+            <h3 class="card-title">
+                <i class="fas fa-map-marker-alt mr-1"></i>
+                Visitors
+            </h3>-->
+    <!-- card tools -->
+    <!--<div class="card-tools">
+        <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+            <i class="far fa-calendar-alt"></i>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
+            <i class="fas fa-minus"></i>
+        </button>
+    </div>-->
+    <!-- /.card-tools -->
+    <!--</div>
+    <div class="card-body">
+        <div id="world-map" style="height: 250px; width: 100%;"></div>
+    </div>-->
+    <!-- /.card-body-->
+    <!--<div class="card-footer bg-transparent">
+        <div class="row">
+            <div class="col-4 text-center">
+                <div id="sparkline-1"></div>
+                <div class="text-white">Visitors</div>
+            </div>-->
+    <!-- ./col -->
+    <!--<div class="col-4 text-center">
+        <div id="sparkline-2"></div>
+        <div class="text-white">Online</div>
+    </div>-->
+    <!-- ./col -->
+    <!--<div class="col-4 text-center">
+        <div id="sparkline-3"></div>
+        <div class="text-white">Sales</div>
+    </div>-->
+    <!-- ./col -->
+    <!--</div>-->
+    <!-- /.row -->
+    <!--</div>
+    </div>-->
+    <!-- /.card -->
+    <!--</section>-->
+    <!-- right col -->
+    <!--</div>-->
+
+</div>
+
+

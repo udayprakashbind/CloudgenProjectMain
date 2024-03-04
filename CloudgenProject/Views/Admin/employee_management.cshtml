@@ -1,0 +1,563 @@
+﻿@model CloudgenProject.Models.admin.employee_manage
+@{
+    ViewBag.Title = "employee_management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    label {
+        color: #3391b7;
+    }
+
+    textarea.form-control {
+        height: 38px;
+    }
+
+    .form-control {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        height: 20px !important;
+        min-height: 30px !important;
+    }
+
+    .custom-btn {
+        background-color: #88c3d8; /* Default background color */
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #3391b7; /* Background color on hover */
+        }
+</style>
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!--<section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Employee Mangement</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee Mangement</li>
+                    </ol>
+                </div>
+            </div>
+        </div>-->
+    <!-- /.container-fluid -->
+    <!--</section>-->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Employee Mangement Field</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("insert_employee", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <form>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Employee Branch:-</label>
+
+                                                <select class="form-control" id="employee_branch" name="employee_branch" @(Model.employee_branch != "" ? "data-select=" + Model.employee_branch + "" : "") required>
+                                                    <option value="">--Select Employee Branch --</option>
+                                                    @if (Model.manage_branch.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.manage_branch)
+                                                        {
+                                                            if (Model.employee_branch == item.id.ToString())
+                                                            {
+                                                                <option value="@item.id" selected="selected">@item.BranchName</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.id">@item.BranchName</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @*<div class="form-group">
+                                                    <label for="">Employee Type:-</label>
+                                                    <input type="text" class="form-control" id="employee_type" name="employee_type" placeholder="Enter Employee Type" value="@Model.employee_type" required>
+                                                </div>*@
+                                            <div class="form-group">
+                                                <label for="">Employee Type:-</label>
+                                                <select class="form-control" id="employee_type" name="employee_type" @(Model.employee_type != "" ? "data-select=" + Model.employee_type + "" : "") required>
+                                                    <option value="">--Select Employee Type--</option>
+                                                    <option value="agent">Agent</option>
+                                                    <option value="sales">Sales</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @*<div class="form-group">
+                                                   <label for="">Employee Designation:-</label>
+                                                   <input type="text" class="form-control" id="employee_designation" name="employee_designation" placeholder="Enter employee_designation" value="@Model.employee_designation" required>
+                                                </div>*@
+                                            <div class="form-group">
+                                                <label for="">Employee Designation:-</label>
+                                                <select class="form-control" id="designation" name="designation" @(Model.designation != "" ? "data-select=" + Model.designation + "" : "") required>
+                                                    <option value="">--Select Designation--</option>
+                                                    @if (Model.designation_list.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.designation_list)
+                                                        {
+                                                            if (Model.designation == item.id.ToString())
+                                                            {
+                                                                <option value="@item.id" selected="selected">@item.designation</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.id">@item.designation</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Employee ID:-</label>
+                                                <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Enter Employee ID" value="@Model.employee_id" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Login User ID:-</label>
+                                                <input type="text" class="form-control" id="login_userid" name="login_userid" placeholder="Enter Login User ID" value="@Model.login_userid" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Password:-</label>
+                                                <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password" value="@Model.password" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Employee First Name:-</label>
+                                                <input type="text" class="form-control" id="employee_first_name" name="employee_first_name" placeholder="Enter First Name" value="@Model.employee_first_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Employee Last Name:-</label>
+                                                <input type="text" class="form-control" id="employee_last_name" name="employee_last_name" placeholder="Enter Last Name" value="@Model.employee_last_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Gender:-</label>
+                                                <select class="form-control" id="gender" name="gender" @(Model.gender != "" ? "data-select=" + Model.gender + "" : "") required>
+                                                    <option value="">--Select Gender--</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Mobile No.:-</label>
+                                                <input type="text" class="form-control" id="mobile_no" name="mobile_no" placeholder="Enter Mobile No." value="@Model.mobile_no" maxlength="10" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">LandLine No.:-</label>
+                                                <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Enter LandLine No." value="@Model.phone_no" maxlength="10" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Alternate No.:-</label>
+                                                <input type="text" class="form-control" id="alternate_number" name="alternate_number" placeholder="Enter Alternate No." value="@Model.alternate_number" maxlength="10" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Date Of Birth:-</label>
+                                                <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter DOB" value="@Model.dob" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Aadhar No.:-</label>
+                                                <input type="text" class="form-control" id="aadhar_no" name="aadhar_no" placeholder="Enter Aadhar No." value="@Model.aadhar_no" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">PAN No.:-</label>
+                                                <input type="text" class="form-control" id="pan_no" name="pan_no" placeholder="Enter Pan No." value="@Model.pan_no" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Salary (In CTC):-</label>
+                                                <input type="text" class="form-control" id="salary_ctc" name="salary_ctc" placeholder="Enter Salary (in CTC)" value="@Model.salary_ctc" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Qualification:-</label>
+                                                <input type="text" class="form-control" id="qualification" name="qualification" placeholder="Enter Qualification" value="@Model.qualification" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Profile Picture:-</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+
+                                                        <input type="file" name="fileupload" class="custom-file-input dropify" id="" data-default-file="/tempimage/@Model.profile_picture" placeholder="Select Picture">
+
+                                                        <input type="hidden" id="profile_picture" name="profile_picture" value="@Model.profile_picture" />
+
+
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose Picture</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Country:-</label>
+                                                <select class="form-control" id="Country" name="country" @(Model.country != "" ? "data-select=" + Model.country + "" : "") required>
+                                                    <option value="">--Select Country--</option>
+                                                    @if (ViewBag.Country != null)
+                                                    {
+                                                        foreach (var item in ViewBag.Country as List<SelectListItem>)
+                                                        {
+                                                            if (Model.country == item.Value)
+                                                            {
+                                                                <option selected value="@item.Value">@item.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Value">@item.Text</option>
+                                                            }
+
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">State:-</label>
+                                                <select class="form-control" id="selectStates" name="state" data-sel="@Model.state" required>
+                                                    <option value="">--Select State--</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">City:-</label>
+                                                <select class="form-control" id="selectcity" name="city" data-sel="@Model.city" required>
+                                                    <option value="">--Select City--</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Area COde:-</label>
+                                                <input type="text" class="form-control" id="area_code" name="area_code" placeholder="Enter Area Code" value="@Model.area_code" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label for="">Address:-</label>
+                                                <textarea name="address" class="form-control">@Model.address</textarea>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        @*<div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="">Employee Department:-</label>
+                                                    <input type="text" class="form-control" id="employee_department" name="employee_department" placeholder="Ente" value="@Model.employee_department" required>
+                                                </div>
+                                            </div>*@
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Employee Department:-</label>
+                                                <select class="form-control" id="department" name="department" @(Model.department != "" ? "data-select=" + Model.department + "" : "") required>
+                                                    <option value="">--Select Department--</option>
+                                                    @if (Model.department_list.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.department_list)
+                                                        {
+                                                            if (Model.department == item.id.ToString())
+                                                            {
+                                                                <option value="@item.id" selected="selected">@item.department</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.id">@item.department</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Reporting Manager:-</label>
+                                                <select class="form-control" id="reporting_manager" name="reporting_manager" @(Model.reporting_manager != "" ? "data-select=" + Model.reporting_manager + "" : "") required>
+                                                    <option value="">--Select Reporting Manager--</option>
+                                                    @if (Model.reporting_manger_list.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.reporting_manger_list)
+                                                        {
+                                                            if (Model.reporting_manager == item.employee_id.ToString())
+                                                            {
+                                                                <option value="@item.employee_id" selected="selected">@item.name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.employee_id">@item.name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Reporting TL:-</label>
+                                                <select class="form-control" id="reporting_tl" name="reporting_tl" @(Model.reporting_tl != "" ? "data-select=" + Model.reporting_tl + "" : "") required>
+                                                    <option value="">--Select Reporting TL--</option>
+                                                    @if (Model.reportingTL_list.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.reportingTL_list)
+                                                        {
+                                                            if (Model.reporting_tl == item.employee_id.ToString())
+                                                            {
+                                                                <option value="@item.employee_id" selected="selected">@item.name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.employee_id">@item.name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            @*<div class="form-group">
+                                                    <label for="">Current Status:-</label>
+                                                    <input type="text" class="form-control" id="current_status" name="current_status" placeholder="Enter Current Status" value="@Model.current_status" required>
+                                                </div>*@
+                                            <div class="form-group">
+                                                <label for="">Current Status:-</label>
+                                                <select class="form-control" id="current_status" name="current_status" @(Model.current_status != "" ? "data-select=" + Model.current_status + "" : "") required>
+                                                    <option value="">--Select Employee Status--</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Join Date:-</label>
+                                                <input type="date" class="form-control" id="join_date" name="join_date" placeholder="" value="@Model.join_date">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Exit Date:-</label>
+                                                <input type="date" class="form-control" id="exit_date" name="exit_date" placeholder="" value="@Model.exit_date">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                                        </div>*@
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <input type="hidden" name="id" id="id" value="@Model.id" />
+                                    <button type="submit" class="btn custom-btn">Submit</button>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    $(document).ready(function () {
+
+
+        $("[data-select]").each(function () {
+            var obj = $(this);
+            obj.val(obj.attr("data-select"))
+        });
+
+
+    });
+</script>
+
+
+<script>
+
+    function stateList(countryId = null, selected = null) {
+
+
+        $.ajax({
+            url: '/admin/Statebind?countryId = ' + countryId,
+            type: 'GET',
+            data: { countryId: countryId },
+            success: function (data) {
+
+                var statesDropdown = $("#selectStates");
+                // alert(JSON.stringify(data));
+                statesDropdown.empty();
+                statesDropdown.append($('<option>').text('Select State').attr('value', ''));
+                $.each(data, function (index, state) {
+                    //alert(JSON.stringify(state.Text));
+                    if (selected != null && selected == state.Value) {
+                        statesDropdown.append($('<option selected="selected">').text(state.Text).attr('value', state.Value));
+
+                    } else {
+                        statesDropdown.append($('<option>').text(state.Text).attr('value', state.Value));
+
+                    }
+                    //console.log(state.Text);
+                });
+                $("#selectcity").empty(); // Clear city dropdown on country change
+            }
+        });
+    }
+
+    function cityList(stateId = null, selected = null) {
+        $.ajax({
+            url: '/admin/Citybind?stateId = ' + stateId,
+            type: 'GET',
+            data: { stateId: stateId },
+            success: function (data) {
+                var citiesDropdown = $("#selectcity");
+                citiesDropdown.empty();
+                citiesDropdown.append($('<option>').text('Select City').attr('value', ''));
+                $.each(data, function (index, city) {
+                    if (selected != null && selected == city.Value) {
+                        citiesDropdown.append($('<option selected="selected">').text(city.Text).attr('value', city.Value));
+
+                    } else {
+                        citiesDropdown.append($('<option>').text(city.Text).attr('value', city.Value));
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        var countryId = $('#Country').val();
+
+        var stateId = $('#selectStates').attr('data-sel');
+        if (countryId && countryId != 'undefined' && countryId != '') {
+            if (stateId && stateId != 'undefined') {
+                stateList(countryId, stateId);
+            } else {
+                stateList(countryId);
+            }
+        }
+
+
+
+        var cityId = $('#selectcity').attr('data-sel');
+        if (stateId && stateId != 'undefined') {
+            if (cityId && cityId != 'undefined') {
+                cityList(stateId, cityId);
+            } else {
+                cityList(cityId);
+            }
+        }
+
+
+
+
+        $("#Country").change(function () {
+            var countryId = $(this).val();
+            //alert(countryId);
+            stateList(countryId);
+        });
+
+        $("#selectStates").change(function () {
+            var stateId = $(this).val();
+            cityList(stateId);
+
+
+        });
+    });
+</script>
+
+
+

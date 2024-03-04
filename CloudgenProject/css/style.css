@@ -1,0 +1,1885 @@
+/* Custom Stylesheet */
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+i.medium {
+    font-size: 30px;
+}
+
+.white-text {
+    color: #FFFFFF !important;
+    font-size: 15px;
+}
+
+.container {
+    max-width: 1250px;
+    width: 100%;
+    margin: auto;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.brand-logo img {
+    width:130px;
+    height: 95px;
+    margin-top: 7px;
+}
+
+.white {
+    background-color: #fff !important;
+    z-index: 999;
+    position: fixed;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+nav ul a {
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+    font-size: 14px;
+    color: #100e10;
+    display: block;
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.sign-lawyer a {
+    color: #100e10;
+}
+
+.top-links h1 {
+    font-size: 25px;
+    margin: 15px 0px;
+    text-align: center;
+    font-weight: 100;
+    color: #545e6b;
+}
+
+.menu-active {
+    color: #fff !important;
+    background: #eceeee;
+    border: 1px solid #8cc8d2;
+}
+
+.section {
+    padding: 90px 0px 50px;
+    background-size: cover;
+    background-image: radial-gradient(circle at 50% 0,#398cbf,#194973);
+}
+
+nav ul a:hover {
+    color: #e37000;
+    background: transparent;
+}
+
+.subnav .subnavbtn:hover {
+    color: #e37000;
+}
+
+.header-title {
+    font-size: 35px;
+    font-weight: 100;
+    text-transform: capitalize;
+    color: #ffeb3b;
+    text-shadow: 3px 4px 6px #000;
+    margin: 10px 0px;
+}
+
+.search-pages {
+    max-width: 805px;
+    width: 100%;
+    margin: auto;
+}
+
+.home-search {
+    max-width: 805px;
+    width: 100%;
+    margin: auto;
+    background: #ffffffab;
+    padding: 10px 0px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.3);
+    border-radius: 5px;
+    margin-bottom: 12px;
+}
+
+.advance-search-title {
+    color: #fff;
+}
+
+.verifide-sec {
+    background: #f6f6f6;
+    padding: 6px 0 15px;
+    box-shadow: 0 1px 0 0 #cacaca;
+}
+
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default) {
+    background-color: #fff;
+    border: none;
+    border: 1px solid #285473;
+    border-radius: 0;
+    outline: none;
+    height: 26px;
+    width: 100%;
+    font-size: 16px;
+    margin: 6px 0 6px 0;
+    padding: 4px 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: border .3s, -webkit-box-shadow .3s;
+    transition: border .3s, -webkit-box-shadow .3s;
+    transition: box-shadow .3s, border .3s;
+    transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
+}
+
+.search-btn {
+    margin-top: 7px;
+}
+
+.ser-btn {
+    margin-top: 6px;
+}
+
+.million-vakil {
+    text-align: center;
+    color: #eee;
+    font-size: 20px;
+    margin: 23px 0px;
+}
+
+.card-panel {
+    padding: 10px 23px 27px;
+}
+
+.box1 {
+    background: #0069bc;
+    color: #fff;
+}
+
+.box2 {
+    background: #e67e22;
+    color: #fff;
+}
+
+.box3 {
+    background: #0069bc;
+    color: #fff;
+}
+
+.box4 {
+    background: #02b99b;
+    color: #fff;
+}
+
+.box5 {
+    background: #a63470;
+    color: #fff;
+}
+
+.box6 {
+    background: #248d91;
+    color: #fff;
+}
+
+.box1 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+.box2 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+.box3 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+.box4 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+.box5 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+.box6 h3 {
+    font-size: 20px;
+    line-height: 0%;
+}
+
+#content-pages {
+    background: #ffffff;
+    padding: 5px 0px 60px;
+}
+
+.read-btn {
+    padding-bottom: 40px;
+}
+
+.top-lawyer h2 {
+    text-align: center;
+    font-size: 30px;
+    padding: 35px 0px 0px 0px;
+    font-weight: 600;
+    color: #545e6b;
+}
+
+span {
+    color: #555;
+}
+
+.vakil-head {
+    font-weight: 600;
+    color: #545e6b;
+    font-size: 30px;
+}
+
+.cyan {
+    background-image: radial-gradient(circle at 50% 0,#949494,#949494);
+}
+
+.lawyer-content {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+    font-size: 16px;
+    padding-bottom: 25px;
+    padding: 15px;
+}
+/* chat box */
+.chat-box {
+    height: 370px;
+    background: #fff;
+    width: 260px;
+    border: 1px solid #eee;
+}
+
+    .chat-box h6 {
+        background: #9c27b0;
+        padding: 10px 15px;
+        color: #fff;
+    }
+
+.close-btn {
+    cursor: pointer;
+    color: #fff;
+    background: #333;
+}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4px;
+}
+
+.input-field {
+    position: relative;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    margin: 1px 0 0px 0;
+}
+
+.chat-submit {
+    margin-left: 13px;
+}
+
+.star-icon2 {
+    font-size: 17px;
+    letter-spacing: -5px;
+}
+
+.lawyer-type h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #545e6b;
+    font-weight: 300;
+    margin: 5px 0px;
+}
+
+#lawyer-pages {
+    padding-bottom: 2%;
+    background: #fff;
+    padding-top: 1%;
+}
+
+.lawyer-tab {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    margin-bottom: 21px;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: #f16035 !important;
+    color: #fff;
+}
+
+.tabs .tab a {
+    color: rgb(1, 114, 189);
+    border-right: 1px solid #ddd;
+}
+/* home pages vakil view */
+.vakil-view {
+    width: 31%;
+    float: left;
+    margin: 10px 13px 0px;
+    box-shadow: 1px 2px 4px 1px #d6d7d8;
+    border: 2px solid #607D8B;
+    background: linear-gradient(3deg, #d9f5fe5e 0%,#ffffff 23%,#ffffff 60%);
+}
+
+    .vakil-view a {
+        color: #000;
+    }
+
+.lawyer-img img {
+    height: 118px;
+    width: 115px;
+    border: 2px solid #009688;
+    float: left;
+    margin-right: 13px;
+    border-radius: 100%;
+    margin: 16px;
+    box-shadow: 0px -1px 5px 1px #2c2e2f;
+}
+
+.loc-icon {
+    font-size: 13px;
+    color: #4CAF50;
+    padding-right: 5px;
+}
+
+.lawyer-details h5 {
+    font-size: 19px;
+    line-height: 1;
+    margin: 11px;
+    color: #059a8a;
+    letter-spacing: -1px;
+}
+
+.location, .exp, .area-type {
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-size: 14px;
+}
+/* app download images */
+.app-section {
+    padding: 30px 0px;
+    background: #fbf6f0;
+}
+
+.down-app a img {
+    height: 50px;
+}
+
+.m-app {
+    height: 350px;
+    overflow: hidden;
+}
+
+    .m-app img {
+        height: 100%;
+    }
+
+/* footer pages */
+#footer-pages {
+    background: #0e1923;
+    padding: 20px 0px 0px;
+}
+
+.footer-tittle h5 {
+    color: #fff;
+    padding: 23px 0px 0px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+    .footer-tittle h5:after {
+        content: '';
+        display: table;
+        margin-top: 15px;
+        width: 69%;
+        height: 1px;
+        background: #f7f7f9;
+    }
+
+.footer-tittle li a {
+    color: #fff;
+    font-size: 14px;
+    line-height: 2;
+    opacity: .5;
+}
+
+    .footer-tittle li a:hover {
+        color: #fff;
+        opacity: 1;
+    }
+
+.payment-img {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 30px 0;
+    font-size: 13px;
+    margin-top: 40px;
+}
+
+.media-link p {
+    color: #afb2b5;
+    font-size: 13px;
+}
+
+.footer-links {
+    padding: 20px 0px;
+}
+
+.media-link h6 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    margin: 20px 0 5px 0;
+}
+
+.company-links a {
+    color: #e37000;
+}
+
+.see-all a {
+    color: #ffc107;
+    border: 2px solid #ffd200;
+    color: #ffffff;
+    /* font-family: 'open sans'; */
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 16px 24px 0 0;
+    padding: 8px 10px 8px 10px;
+    opacity: 0.7;
+}
+
+.app-link p {
+    font-size: 16px;
+    text-align: left;
+}
+
+.Copyright {
+    color: #afb2b5;
+}
+
+.advance-text {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#get-lawyer {
+    padding: 14px 40px;
+    margin-left: 42px;
+    margin-top: 47px;
+    background-image: radial-gradient(circle at 50% 0,#398cbf,#194973);
+}
+
+.abs-title {
+    padding-left: 24px;
+}
+
+#side_enq {
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* search section */
+#search-section {
+    background: #eaeaea2b;
+}
+
+.search-tab {
+    padding: 14px 0px 7px 0px;
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+    margin-top: 5em;
+    background: #078c7f;
+    border-radius: 14px;
+    box-shadow: 1px 2px 4px 2px #221413;
+}
+
+.teal {
+    background-color: #38aabd !important;
+}
+
+header {
+    padding-top: 5em;
+}
+
+.line-text h3 {
+    font-size: 27px;
+}
+
+.vakil-search {
+    min-height: 160px;
+    border: 1px solid #ddd;
+    margin: 25px 0px;
+    padding: 9px;
+}
+
+.top-banner {
+    padding: 20px;
+}
+
+.vakil-type img {
+    height: 130px;
+    width: 110px;
+    padding: 1px 1px;
+    border: 2px solid #5b6367;
+    float: left;
+    margin-right: 32px;
+    border-radius: 8px;
+}
+
+.tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #0172bd;
+    will-change: left, right;
+    top: 0;
+    height: 0px;
+}
+
+.leftside-data {
+    padding: 20px;
+}
+
+    .leftside-data h5 {
+        font-size: 16px;
+        padding: 10px;
+        margin: 0px 0px 15px;
+        background: #f56354;
+        color: #fff;
+        text-align: center;
+    }
+
+.vakil-info {
+    width: 100%;
+    max-width: 480px;
+    float: left;
+    border-right: 1px solid #ddd;
+    height: 144px;
+    margin-top: 5px;
+}
+
+    .vakil-info h3 {
+        font-size: 18px;
+        padding: 3px 0px;
+        margin-bottom: 8px;
+        margin-top: 7px;
+        font-weight: bold;
+        color: #0172bd;
+        text-transform: capitalize;
+    }
+/*.vakil-info h3 a{color:#0172bd!important;font-family: unset;}*/
+.star-icon {
+    font-size: 20px;
+    background: #ef6f38;
+    color: #fff;
+}
+
+.contact-btn {
+    width: 220px;
+    float: left;
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.enq-btn {
+    border: 1px solid #5faba4;
+    padding: 6px 10px;
+    line-height: 3;
+    background: #009688;
+    color: #fff;
+}
+
+/* lawyer profile */
+#lawyer-profile {
+    padding: 4em 0em 0em;
+}
+
+.user-img img {
+    height: 145px;
+    width: 120px;
+    border: 1px solid #1c171dc4;
+    padding: 3px;
+    margin: 14px;
+    border-radius: 4px;
+}
+
+.lawyer-head {
+    margin-top: 7px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.review-item {
+    background: #f0f1f2;
+    padding: 7px 24px;
+}
+
+.get-enquery h3 {
+    font-size: 19px;
+    color: #0172bd;
+    margin-top: 13px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.lawyer-leftside {
+    padding: 20px;
+    background: linear-gradient(45deg, #ffffff 12%,#f4f7e9 12%,#ffffff );
+}
+
+.top-banner img {
+    padding: 10px 0px;
+}
+
+.quat-btn {
+    padding: 6px 20px;
+    line-height: 3;
+    background: #004085;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.quat-btn1 {
+    padding: 6px 20px;
+    line-height: 3;
+    background: #4CAF50;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.court-type h2 {
+    font-size: 20px;
+    color: #FF5722;
+    margin: 10px 0px;
+}
+
+    .court-type h2::after {
+        content: '';
+        display: table;
+        margin-top: 7px;
+        width: 55px;
+        height: 3px;
+        background: #FF5722;
+    }
+
+.court-dec li {
+    font-size: 14px;
+    float: left;
+    padding: 4px 9px;
+    border: 1px solid #88b4e5;
+    margin: 5px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px #333;
+}
+
+.profile-title {
+    font-size: 15px;
+}
+
+.advice-tittle {
+    font-size: 21px;
+    border-bottom: 2px solid #ffffffb8;
+    text-transform: capitalize;
+    font-weight: 100;
+    margin-top: 2px;
+    padding: 12px 0px;
+    color: #1e547f;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    float: right;
+    display: flex;
+    padding-right: 55px;
+}
+
+    .social-links a {
+        background-color: #ffffff3d;
+        margin: 5px;
+        height: 30px;
+        width: 34px;
+        color: #ffffffb5;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        border-radius: 5;
+    }
+
+
+.getlawyer-pages {
+    width: 100%;
+}
+
+textarea.materialize-textarea {
+    line-height: normal;
+    overflow-y: hidden;
+    resize: none;
+    min-height: 7rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #a29d9d;
+    width: 103%;
+}
+
+
+
+.sub-query {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+#profile-content {
+    padding: 0px 0px 15px;
+}
+
+#vakil-bg {
+    background: #fff;
+}
+
+.left-side-links {
+    position: sticky;
+    top: 0;
+    margin-top: 20px;
+    z-index: 111;
+}
+/* review report */
+.edit-review {
+    background: #004085;
+}
+
+#user-review {
+    margin-top: 2em;
+    padding-bottom: 2em;
+}
+
+.review-user-img img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+}
+
+.review-title h5 {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.review-title p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.review-title {
+    padding-bottom: 10px;
+}
+
+.review-star {
+    font-size: 14px;
+}
+
+.post-date {
+    float: right;
+    width: 200px;
+    line-height: 0;
+}
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type: none;
+    padding: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+    .rating-stars ul > li.star {
+        display: inline-block;
+    }
+
+        .rating-stars ul > li.star > .star-value {
+            font-size: 2.5em; /* Change the size of the stars */
+            color: #ccc; /* Color on idle state */
+        }
+
+        .rating-stars ul > li.star.hover > .star-value {
+            color: #FFCC36;
+        }
+
+        .rating-stars ul > li.star.selected > .star-value {
+            color: #FF912C;
+        }
+
+.table-of-contents a {
+    color: #615e5d;
+    padding-left: 16px;
+    height: 1.5rem;
+    line-height: 1.8rem;
+    font-size: 16px;
+}
+
+    .table-of-contents a:hover {
+        color: #1b161a;
+        padding-left: 15px;
+        border-left: 3px solid #e37000;
+    }
+
+    .table-of-contents a active {
+        color: #1b161a;
+        padding-left: 15px;
+        border-left: 3px solid #e37000;
+    }
+/* login pages */
+#login-pages {
+    padding: 3em 0em;
+    background-image: url('../images/laptop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login-2 {
+    color: #fff;
+}
+
+.login-img {
+    text-align: center;
+}
+
+.login-grid {
+    max-width: 950px;
+    width: 100%;
+    margin: auto;
+    background: #fffffff2;
+    margin-top: 7em;
+    margin-bottom: 7em;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+}
+
+.leftside-content h3 {
+    font-size: 40px;
+    color: #ffffff;
+    font-style: italic;
+    font-family: time-roman;
+    padding: 0px 0px 0px 19px;
+}
+
+.login-item {
+    width: 241px;
+    float: left;
+}
+
+.login-item2 li {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: time-roman;
+    font-style: italic;
+    color: #ffffffc4;
+}
+
+.check-icon {
+    font-size: 17px;
+    background: #4CAF50;
+    color: #ffffff;
+    box-shadow: 0px 2px 4px #111;
+    margin-right: 10px;
+}
+
+.rightside-content {
+    max-width: 450px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.client-login h6 {
+    font-size: 16px;
+    margin-top: 28px;
+}
+
+.login-img img {
+    height: 150px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.user-step-reg {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.file-field .file-path-wrapper {
+    overflow: hidden;
+    padding-left: 7px;
+    padding: 9px;
+}
+
+.file-field .btn, .file-field .btn-large, .file-field .btn-small {
+    float: left;
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 13px;
+    background: #fff;
+}
+
+.thanks-msg {
+    font-size: 30px;
+}
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: -2px 13px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #1f2120;
+}
+    /* Mark the active step: */
+    .step.active {
+        opacity: 2;
+    }
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #4CAF50;
+    }
+/* conatct pages */
+#contact-pages {
+    background: linear-gradient(#ffffff, rgb(255, 255, 255));
+}
+
+.contact-leftside {
+    padding: 8em 0;
+}
+
+.contact-form {
+    padding: 20px;
+    background: #fbfbfbb5;
+    border: 1px solid #ddd;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+    .contact-form h2 {
+        font-size: 17px;
+        margin-top: 5px;
+        background: #333942;
+        padding: 8px 12px;
+        color: #fff;
+        font-weight: 100;
+    }
+
+.address {
+    background: #ffffffa1;
+    margin-bottom: 30px;
+}
+
+    .address h4 {
+        font-size: 21px;
+        margin-top: 0px;
+        background: #0172bd;
+        padding: 6px 15px;
+        color: #fff;
+        font-family: time-roman;
+        font-style: italic;
+    }
+
+.all-support {
+    max-width: 400px;
+    width: 100%;
+    float: left;
+}
+
+    .all-support li {
+        font-size: 18px;
+        padding: 0px 16px;
+    }
+
+.contact-loc li {
+    font-size: 16px;
+    padding: 0px 16px;
+}
+
+    .contact-loc li h6 {
+        font-weight: 600;
+        color: #e60857;
+        font-size: 15px;
+    }
+
+.support-query {
+    height: 200px;
+    float: right;
+}
+/* About Us Pages */
+.portal-about h3 {
+    font-size: 20px;
+    padding: 5px;
+    color: #555;
+    margin-top: 1px;
+    font-weight: 600;
+}
+
+.about-text {
+    font-size: 15px;
+    line-height: 22px;
+    text-align: justify;
+}
+
+.portal-about h4 {
+    font-size: 17px;
+    padding: 8px 6px 7px;
+    color: #555;
+    font-weight: 600;
+}
+/* enquery form modal */
+.modal .modal-content {
+    padding: 0px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    max-height: 90%;
+    width: 40%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
+}
+
+.enquery-text {
+    float: right;
+    font-size: 16px;
+    color: #292828;
+}
+
+.modal-content h5 {
+    background: #555;
+    color: #fff;
+    padding: 7px 1px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.enquery-msg {
+    padding: 10px 30px;
+}
+/* terms condition */
+.terms-type {
+    padding: 7em 1em;
+    background: #fff;
+}
+/* Advance Search pages */
+.sg-btn {
+    padding: 21px 0px 24px;
+    /* margin: auto; */
+}
+
+    .sg-btn .button-4 {
+        margin: auto;
+    }
+
+.modal-close {
+    margin-right: 10px;
+}
+
+.search-footer {
+    padding: 30px 0px;
+}
+
+.advance-search-page {
+    max-width: 750px;
+    width: 100%;
+    margin: auto;
+    background: #26a69af0;
+    box-shadow: rgb(255, 255, 255) 0 2px 20px inset;
+}
+
+.search-adv {
+    background: #9C27B0;
+    width: 165px;
+    box-shadow: 0px 2px 2px 1px #635e5e;
+}
+
+.vakil-uncle-logo img {
+    padding: 2px 0px;
+    display: flex;
+    margin: auto;
+    height: 60px;
+}
+
+.profile-title {
+    text-transform: capitalize;
+}
+
+.dropdown-content li {
+    clear: both;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    min-height: 33px;
+    line-height: 1.5rem;
+    width: 100%;
+    text-align: left;
+}
+
+    .dropdown-content li > a, .dropdown-content li > span {
+        font-size: 16px;
+        color: #353a39;
+        display: block;
+        line-height: 22px;
+        padding: 9px 16px;
+    }
+/* search section laywer*/
+.lawyer-box {
+    border: 1px solid #ddd;
+    height: 200px;
+    padding: 25px;
+    background: #fff;
+}
+
+.laywer-photo img {
+    height: 125px;
+    float: left;
+    border: 2px solid #5e5e61;
+    margin-right: 20px;
+}
+
+.lawyer-name h5 {
+    font-size: 16px;
+    margin-top: -2px;
+    color: #00448f;
+    text-transform: capitalize;
+}
+
+.star-icon2 img {
+    height: 14px;
+    float: left;
+    width: 14px !important;
+}
+
+.rating p {
+    margin: 1px;
+}
+
+.location, .exp {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.all-lawyer-btn {
+    margin: 10px 60px;
+    padding: 8px;
+    border: 1px solid #008CC9;
+}
+
+.item h6 {
+    background: #3481b4;
+    color: #fff;
+    padding: 11px;
+}
+
+.all-lawyer-btn:hover {
+    box-shadow: inset 0 0 0 1px #00577d;
+    border: 1px solid #00577d;
+    background-color: #fafafa;
+    color: #00577d;
+}
+
+.allsearch_vakil {
+    background: #fff;
+    padding: 20px;
+}
+
+.lawyer-content h4 {
+    font-size: 25px;
+    margin: 0px;
+}
+
+#search-section:before {
+    content: '';
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 74%;
+    background: #efefef;
+    z-index: -1;
+}
+
+.search-aside {
+    position: sticky;
+    z-index: 111;
+    top: 70px;
+}
+
+.filter-search .input-field {
+    margin-bottom: 11px;
+}
+
+.other-search {
+    background: #f56354;
+    color: #fff;
+    text-align: center;
+}
+
+.ads-section {
+    background: #607D8B;
+    padding: 30px;
+}
+
+.ads-enquery h3 {
+    font-size: 24px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0px;
+}
+
+.ads-enquery h6 {
+    font-size: 18px;
+    line-height: 30px;
+    color: #fff;
+}
+
+.vakil-img img {
+    height: 150px;
+    width: 150px;
+    background: #fff;
+    padding: 0px;
+    border-radius: 50%;
+}
+
+.my-lawyer {
+    background: #fff;
+    border: none;
+    padding: 12px;
+    margin-top: 13px;
+}
+
+.rating ul {
+    margin: 6px 0px;
+}
+
+
+/* review section*/
+.review-user-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 2px 1px #3d4248;
+}
+
+.post-date {
+    color: #0c0c0c;
+    font-weight: 600;
+}
+
+#client-signup {
+    padding-right: 0px;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 16px;
+    background: linear-gradient(to bottom,#499f43 0,#048003 100%);
+    color: #fff !important;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.footer-down .row {
+    margin-bottom: 0px;
+}
+
+#wapper {
+    background: #f6f6f6;
+    padding: 15px 15px 30px;
+    background-position: 0 0, 50px 50px;
+    background-size: 20px 20px;
+    /*background-image: url('../images/wave.png');*/
+}
+
+.app-link h4 {
+    font-size: 25px;
+    color: #000;
+}
+
+.court-dec li:hover {
+    box-shadow: 1px 0px 4px #1f1f1dad;
+}
+
+
+/*mega menu bar*/
+
+.subnav {
+    float: left;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    .subnav:hover {
+        color: #e37000 !important;
+    }
+
+    .subnav .subnavbtn {
+        /*font-size: 16px;*/
+        border: none;
+        outline: none;
+        color: #000;
+        background-color: inherit;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+
+.subnav-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    z-index: 999;
+    padding: 0px 14px 20px;
+    padding-bottom: 25px;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 0 3px #d6d6d6;
+}
+
+.sublist h4 {
+    font-size: 17px;
+    color: #e37000;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 16px;
+}
+
+.sublist ul li {
+    width: 100%;
+}
+
+    .sublist ul li a {
+        font-size: 13px;
+        text-transform: capitalize;
+        font-weight: 100;
+    }
+
+.subnav-content a {
+    color: #333;
+    text-decoration: none;
+    line-height: 2.2;
+}
+
+.subnav:hover .subnav-content {
+    display: block;
+}
+
+.sublist ul a:hover {
+    color: #e37000;
+}
+
+.btn, .btn-large, .btn-small {
+    text-decoration: none;
+    color: #fff;
+    background-color: #03A9F4;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    cursor: pointer;
+}
+
+.area-type span {
+    font-weight: 600;
+}
+
+.dummy-star {
+    padding: 20px 0px 12px;
+}
+
+.score-user {
+    background: #428b2c;
+    color: #fff;
+    padding: 3px;
+    width: 28px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: #428B2A;
+    font-size: 12px;
+    font-weight: 500;
+    float: left;
+    color: #fff;
+    margin-right: 5px;
+    display: flex;
+    margin-top: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.dummy-star p {
+    margin-top: 5px;
+}
+
+.lawyer-content p {
+    font-size: 15px;
+}
+
+.sublist ul li a {
+    padding-left: 0px !important;
+}
+
+.videos-grid {
+    padding: 0px 0px 20px;
+}
+
+.lawyer_video-links h4 {
+    font-size: 21px;
+    font-weight: 400;
+    color: #FF5722;
+    margin: 20px 0px 15px;
+}
+
+    .lawyer_video-links h4::after {
+        content: '';
+        display: table;
+        margin-top: 7px;
+        width: 55px;
+        height: 3px;
+        background: #FF5722;
+    }
+
+.video-icon {
+    padding-right: 11px;
+    color: #F44336;
+}
+
+#terms-condition h3 {
+    font-size: 26px;
+    color: #0172bd;
+}
+
+.sitemap-title {
+    font-size: 19px;
+    margin: 0px;
+    color: #383333;
+    padding: 4px;
+}
+
+.vakil-info a {
+    color: #333;
+}
+
+.vakil-search a {
+    color: #444141;
+}
+
+/* add video section*/
+.video-section h3 {
+    font-size: 25px;
+    text-align: center;
+    color: #545e6b;
+    font-weight: 300;
+    margin: 1px 0px;
+}
+
+.video-section {
+    padding: 20px 0px;
+}
+
+#demos .item-video {
+    height: 300px;
+}
+
+.owl-carousel .owl-video-wrapper {
+    position: relative;
+    height: 100%;
+    background: #fff;
+}
+
+
+.laywer_videos {
+    margin-top: 19px;
+}
+
+.side-content2 {
+    background-image: url(../images/laptop.jpg);
+    height: 370px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ads-photos {
+    height: 300px;
+    margin: 30px 0px;
+}
+
+    .ads-photos a img {
+        height: 100%;
+    }
+
+.law-video {
+    width: 100%;
+    height: 222px;
+}
+
+.achiv-pic {
+    border: 1px solid #ddd;
+    padding: 11px;
+    margin: 5px 0px;
+}
+
+.achiv-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.achiv-pic p {
+    margin: 6px 0px;
+}
+
+.photos-lists {
+    width: 250px;
+    float: left;
+    margin: 10px 20px 0px 0px;
+    border: 1px solid #333;
+}
+
+.materialboxed {
+    padding: 6px;
+    width: 250px;
+    height: 150px;
+}
+
+#gallery-laywer {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.head-pub {
+    background: #0778ab;
+    color: #fff;
+}
+
+td, th {
+    padding: 7px 7px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.pub-lists tr p {
+    margin: 0px;
+}
+
+.review-user-img {
+    /* display: inline-block; */
+    width: 80px;
+    height: 95px;
+    float: left;
+}
+
+.law-login {
+    padding-top: 7em;
+    padding-bottom: 5em;
+}
+
+.user-login02 {
+    max-width: 406px;
+    width: 100%;
+    margin: auto;
+    background: #4a484899;
+    padding: 40px;
+    margin-top: 40px;
+}
+
+#login-layout {
+    background-image: url('../images/laptop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.client-login {
+    color: #fff;
+}
+
+    .client-login a {
+        color: #FFEB3B;
+    }
+
+.advice-tittle2 {
+    font-size: 21px;
+    border-bottom: 2px solid #ffffffb8;
+    text-transform: capitalize;
+    font-weight: 100;
+    margin-top: 2px;
+    padding: 12px 0px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.client-item-wrapper {
+    padding: 20px;
+    background: #424f69;
+    color: #fff;
+}
+
+.us-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+}
+
+
+
+/* media query */
+@media only screen and (max-width: 767px) {
+    .section {
+        padding: 80px 0px 36px;
+        background-size: cover;
+    }
+
+    .header-title {
+        font-size: 26px;
+        margin: 15px 0px;
+    }
+
+    nav .sidenav-trigger i {
+        height: 46px;
+        line-height: 57px;
+        color: #000;
+    }
+
+    .top-links h1 {
+        font-size: 22px;
+        margin: 0.8rem 0 0.68rem 0;
+    }
+
+    .search-pages {
+        padding: 0px 11px 0px 11px;
+    }
+
+    .lawyer-type h2 {
+        font-size: 23px;
+        padding: 2px 0px 0px 0px;
+    }
+
+    .lawyer-tab {
+        margin-top: 7px;
+    }
+
+    .vakil-view {
+        width: 90%;
+    }
+
+    .lawyer-img img {
+        height: 99px;
+        width: 100px;
+        margin: 6px;
+    }
+
+    #lawyer-profile {
+        padding: 4em 0em 0em;
+    }
+
+    .contact-leftside {
+        padding: 4em 0;
+    }
+
+    .modal {
+        width: 90%;
+    }
+
+    .enquery-msg {
+        padding: 0px 1px;
+    }
+
+    .subnav {
+        float: none;
+        overflow: hidden;
+        cursor: pointer;
+        padding-left: 17px;
+    }
+
+    .vakil-search {
+        height: auto;
+        margin-bottom: 12px;
+        background: #ffffffd1;
+    }
+
+    .vakil-type img {
+        height: 102px;
+        width: 84px;
+        padding: 4px 3px;
+        margin: 7px 8px;
+        margin-right: 20px;
+    }
+
+    .vakil-info {
+        width: 100%;
+        max-width: 450px;
+        display: contents;
+    }
+
+    .contact-btn {
+        float: none;
+        text-align: center;
+        padding: 25px 0px;
+    }
+
+    .line-text h3 {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    header {
+        padding-top: 1em;
+    }
+
+    .m-app {
+        height: 185px;
+        overflow: hidden;
+    }
+
+    #get-lawyer {
+        padding: 14px 40px;
+        margin-left: 2px;
+        margin-top: 6px;
+    }
+
+    .search-aside {
+        display: none;
+    }
+
+    .allsearch_vakil {
+        padding-top: 70px;
+    }
+
+    .input-field {
+        margin: 1px 8px 0px 0px;
+    }
+
+    .side-content2 {
+        display: none;
+    }
+
+    .login-grid {
+        margin-top: 4em;
+        margin-bottom: 0em;
+    }
+
+    .rightside-content {
+        padding: 5px;
+    }
+
+    .leftside-content h3 {
+        font-size: 24px;
+    }
+
+    .login-item2 li {
+        font-size: 16px;
+        line-height: 25px;
+        font-family: inherit;
+        font-style: normal;
+    }
+
+    .owl-nav {
+        display: none;
+    }
+
+    .all-lawyer-btn {
+        margin: 14px 0px;
+        padding: 5px;
+    }
+
+    .tabs .tab a {
+        padding: 0 6px;
+        font-size: 12px;
+    }
+
+    .tabs {
+        height: 34px;
+    }
+
+        .tabs .tab {
+            line-height: 33px;
+            height: 30px;
+        }
+
+    i.medium {
+        font-size: 36px;
+    }
+
+    .card-panel {
+        padding: 5px 23px 15px;
+    }
+
+    #wapper {
+        padding: 15px 15px 10px;
+    }
+
+    .video-section h3 {
+        font-size: 20px;
+    }
+
+    .rating-stars ul > li.star {
+        font-size: 10px;
+    }
+
+    .photos-lists {
+        width: 125px;
+        float: left;
+        margin: 10px 5px 0px 0px;
+        border: 1px solid #333;
+    }
+
+    .materialboxed {
+        width: 100%;
+    }
+
+    .vakil-user {
+        float: left;
+    }
+}

@@ -1,0 +1,552 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title></title>
+    <!-- Favicon icon -->
+    <link href="~/images/favicaon-logo.png" rel="icon" sizes="96*96">
+    <!-- Custom Stylesheet -->
+    <link href="~/Contents/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Contents/css/style.css" rel="stylesheet" />
+
+
+    <style>
+        .brand-title img {
+            height: 70px;
+            /* justify-content: center; */
+            display: flex;
+            margin: auto;
+        }
+
+        #example1_filter .form-control {
+            border: 1px solid #333;
+            /* min-height: 2px !important; */
+        }
+
+        .nav-header .brand-logo a {
+            padding: 10px 1.8125rem;
+            display: block;
+        }
+
+        .nav-header {
+            background: #fffffe !important;
+        }
+
+        .header {
+            /*background-color: #0aaae3 !important;*/
+            background-color: white !important;
+            height: 50px;
+        }
+
+        .tb-list tr td {
+            padding: 1px 4px;
+        }
+
+        .form-control-sm {
+            min-height: 30px !important;
+        }
+
+        .form-control {
+            height: 35px !important;
+            border: 1px solid #88c3d8;
+        }
+
+        .im {
+            border-radius: 50%;
+        }
+
+        .datepicker td {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .nav-header {
+            height: 50px;
+        }
+
+        .nk-sidebar {
+            width: 250px;
+            top: auto !important;
+        }
+
+        label {
+            font-size: 10px;
+            margin-bottom: 0;
+        }
+        .d-block {
+             display: flex !important; 
+        }
+    </style>
+    <style type="text/css">
+        .processing {
+            position: fixed;
+            z-index: 10000;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: Black;
+            /*filter: alpha(opacity=60);*/
+            opacity: 0.6;
+            /*-moz-opacity: 0.8;*/
+        }
+
+        .center {
+            z-index: 10000;
+            margin: 300px auto;
+            padding: 10px;
+            width: 130px;
+            background-color: White;
+            border-radius: 10px;
+            /*filter: alpha(opacity=100);*/
+            opacity: 1;
+            /*-moz-opacity: 1;*/
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+</head>
+    <body>
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+        <!--**********************************
+            Main wrapper start
+        ***********************************-->
+        <div id="main-wrapper" class="show menu-toggle">
+            <!--**********************************
+                Nav header start
+            ***********************************-->
+            <div class="nav-header">
+                <div class="brand-logo">
+                    <img src="~/Contents/images/AdminLTELogo.png" height="50" width="50" style="border-radius:50%" alt="">
+                </div>
+            </div>
+            <!--**********************************
+                Nav header end
+            ***********************************-->
+            <!--**********************************
+                Header start
+            ***********************************-->
+            <div class="header">
+                <div class="header-content clearfix">
+
+                    <div class="nav-control">
+                        <div class="hamburger is-active">
+                            <span class="toggle-icon"><i class="icon-menu"></i></span>
+                        </div>
+                    </div>
+                    <div class="header-left">
+                        <!--<div class="input-group icons">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                            </div>-->
+                            @*<input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">*@
+                            <!--<div class="drop-down   d-md-none">
+                                <form action="#">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </form>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="header-right">
+                        <ul class="clearfix">
+                            <li class="icons dropdown" style="padding-top:5px">
+                                <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+                                    <span class="activity active"></span>
+                                    <img src="~/Contents/images/1.png" height="40" width="40" alt="">
+                                </div>
+                                <div class="drop-down dropdown-profile dropdown-menu">
+                                    <div class="dropdown-content-body">
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="d-block">@Session["username"] (<p1 class="d-block">@Session["usertype"]</p1>) </a>
+                                                @*<a href="#"><i class="icon-user"></i> <span>Profile</span></a>*@
+                                            </li>
+                                            <li>
+                                                @*<a href="#"><i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill badge-primary"></div></a>*@
+                                                @*<p1 class="d-block">@Session["usertype"]</p1>*@
+                                                @*<p1 class="d-block" id="loginbranch">@Session["loginuserbranch"]</p1>*@
+                                            </li>
+
+                                            @*<hr class="my-2">
+                                                <li>
+                                                    <a href="#"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                                </li>*@
+                                            <li><a href="/admin/logout"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--**********************************
+                Header end ti-comment-alt
+            ***********************************-->
+            <!--**********************************
+                Sidebar start
+            ***********************************-->
+            <div class="nk-sidebar" >
+                <div class="nk-nav-scroll">
+                    @if (Session["usertype"].ToString() == "admin")
+                    {
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/Dashboard">Dashboard</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text"> Department Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/department_management">Department Management</a></li>
+                                    @*<li><a href="/Admin/view_employee">View Employee</a></li>*@
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text"> Designation Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/designation_management">Designation Management</a></li>
+                                    @*<li><a href="/Admin/view_employee">View Employee</a></li>*@
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text"> Employee Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/employee_management">Add Employee</a></li>
+                                    <li><a href="/Admin/view_employee">View Employee</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-badge menu-icon"></i><span class="nav-text"> Branch Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/branch_management">Add Branch</a></li>
+                                    <li><a href="/Admin/view_branch">View Branch</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Lead Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/addLeadManualyBySalesMan">Add Lead</a></li>
+                                    <li><a href="/Admin/addleadsheet">Upload LeadSheet</a></li>
+                                    <li><a href="/Admin/viewleadsheetlist">view leadsheet list</a></li>
+                                    <li><a href="/Admin/AssignLead">Assign Lead</a></li>
+                                    <li><a href="/Admin/viewleadstatus">Lead Status</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-user menu-icon"></i><span class="nav-text">Leave Management</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/manage_leave">Add Leave</a></li>
+                                    <li><a href="/admin/view_leave">View Leave List</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-envelope-open menu-icon"></i><span class="nav-text">sub admin manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_subadmin">add_subadmin</a></li>
+                                    <li><a href="/admin/view_subadmin">view_subadmin</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text"> sequence manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_sequence">add_sequence</a></li>
+                                    <li><a href="/Admin/view_sequence">view_sequence</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-notebook menu-icon"></i><span class="nav-text">Product Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_product">add_product</a></li>
+                                    <li><a href="/Admin/view_product">view_product</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-key menu-icon"></i><span class="nav-text">Vendor Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_vendor">add_vendor</a></li>
+                                    <li><a href="/Admin/view_vendor">view_vendor</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-graph menu-icon"></i><span class="nav-text">Sale Book Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_salebook">add_salebook</a></li>
+                                    <li><a href="/Admin/view_salebook">view_salebook</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-user menu-icon"></i><span class="nav-text">PI Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_pi">add_pi</a></li>
+                                    <li><a href="/Admin/view_pi">view_pi</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text">PO Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/add_po">add_po</a></li>
+                                    <li><a href="/Admin/view_po">view_po</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text"> Quotation Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/view_quotation">view_quotation</a></li>
+                                </ul>
+                            </li>
+                            @*<li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-envelope-open menu-icon"></i><span class="nav-text"> Sales Manage</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/Admin/addleadsheet">Upload LeadSheet</a></li>
+                                    <li><a href="/Admin/viewleadsheetlist">view leadsheet list</a></li>
+                                    <li><a href="/Admin/AssignLead">Assign Lead</a></li>
+                                </ul>
+                            </li>*@
+                        </ul>
+                    }
+
+                    @if (Session["usertype"].ToString() == "sales")
+                    {
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/sale_dashboard">Dashboard</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text"> Generate Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/viewleadsheetlist">View Assigned Lead & Generate</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-badge menu-icon"></i><span class="nav-text"> Follow UP Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/view_assignedlead">Follow UP Lead</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-user menu-icon"></i><span class="nav-text"> Add Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/addLeadManualyBySalesMan">Add Lead</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-badge menu-icon"></i><span class="nav-text"> Assign Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/AssignLead">Assign Lead</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text"> ReAssign Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/showAssignedLeadBySales">View Assigned Lead & ReAssign</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-user menu-icon"></i><span class="nav-text">  Quotation Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/view_quotation">view_quotation</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+
+
+                    @if (Session["usertype"].ToString() == "agent")
+                    {
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/agent_dashboard">Dashboard</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-grid menu-icon"></i><span class="nav-text"> Generate Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/viewleadsheetlist">View Assigned Lead & Generate</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-badge menu-icon"></i><span class="nav-text"> Follow UP Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/view_assignedlead">Follow UP Lead</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-user menu-icon"></i><span class="nav-text">  Quotation Manager</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/view_quotation">view_quotation</a></li>
+                                </ul>
+                            </li>
+
+                            @*<li>
+                                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text"> ReAssign Lead</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/admin/showAssignedLeadBySales">View Assigned Lead & ReAssign</a></li>
+                                </ul>
+                            </li>*@
+                        </ul>
+                    }
+
+                </div>
+            </div>
+            <!--**********************************
+                Sidebar end
+            ***********************************-->
+            <!--**********************************
+                Content body start
+            ***********************************-->
+            <div class="content-body">
+                <div>
+                    @RenderBody()
+                </div>
+                <!-- row -->
+                <div class="container-fluid">
+                </div>
+                <!-- #/ container -->
+            </div>
+            <!--**********************************
+                Content body end
+            ***********************************-->
+            <!--**********************************
+                Footer start
+            ***********************************-->
+
+            <div class="footer">
+                <div class="copyright">
+                    <p>&copy;2023 Mecreel Infosoft Pvt Ltd . All Rights Reserved | Made by <a href="http://macreel.com/">Macreel Infosoft Pvt Ltd </a></p>
+                </div>
+            </div>
+            <!--**********************************
+                Footer end
+            ***********************************-->
+        </div>
+      
+
+        <script src="~/Contents/plugins/common/common.min.js"></script>
+        <script src="~/Contents/js/custom.min.js"></script>
+        <script src="~/Contents/js/settings.js"></script>
+        <script src="~/Contents/js/gleek.js"></script>
+        <script src="~/Contents/js/styleSwitcher.js"></script>
+        <script src="~/Contents/js/dashboard/dashboard-1.js"></script>
+        <script src="~/Contents/plugins/tables/js/jquery.dataTables.min.js"></script>
+        <script src="~/Contents/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+        <script src="~/Contents/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+        <script src="~/Contents/plugins/moment/moment.js"></script>
+        <script src="~/Contents/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+        <!-- Clock Plugin JavaScript -->
+        <script src="~/Contents/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+        <!-- Color Picker Plugin JavaScript -->
+        <script src="~/Contents/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+        <script src="~/Contents/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+        <script src="~/Contents/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+        <!-- Date Picker Plugin JavaScript -->
+        <script src="~/Contents/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <!-- Date range Plugin JavaScript -->
+        <script src="~/Contents/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="~/Contents/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="~/Contents/js/plugins-init/form-pickers-init.js"></script>
+
+    </body>
+
+</html>

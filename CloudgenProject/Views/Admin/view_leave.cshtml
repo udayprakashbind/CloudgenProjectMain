@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "view_leave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<style>
+    .adv-title {
+        background: #495057;
+        padding: 9px 0px;
+        color: #fff;
+        font-size: 19px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .content-body .container-fluid {
+        padding: 15px 29px 0;
+    }
+
+    .form-control {
+        height: 35px !important;
+        border: 1px solid #88c3d8;
+    }
+
+    .adv-title {
+        padding: 5px !important;
+        margin-bottom: 3px !important;
+    }
+    .modal-dialog {
+        max-width: 800px; /* Set the maximum width of the modal */
+    }
+
+    .modal-content {
+        padding: 20px; /* Add padding inside the modal */
+    }
+
+    .modal-body p {
+        margin-bottom: 10px; /* Add some space between paragraphs */
+    }
+
+    /* Optional: Style the modal header */
+    .modal-header {
+        background-color:darkblue;
+        color: white;
+        padding: 10px 20px;
+        border-bottom: none;
+    }
+    .modal-title {
+        color: white !important;
+    }
+
+    .modal-body .row [class^="col-"] {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .close {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+    .modal-body table {
+        width: 100%;
+       
+    }
+
+  /*  .modal-body td {
+        padding: 8px;
+        border-left: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+    }
+*/
+        .modal-body td:last-child {
+            border-right: none; /* Remove right border for the last cell in each row */
+        }
+
+      
+    .modal-body strong {
+        font-weight: bold;
+    }
+  
+   
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="padding-top:0px" ;>
+                    <div class="form-group row justify-content-md-center" style="background-color:#495057; ">
+                        <h2 class="adv-title">Leave List</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Employee Id</th>
+                                    <th>Casual Leave</th>
+                                    <th>Sick/Medical Leave</th>
+                                    <th>Maternity Leave</th>
+                                    <th>Quarantine Leave</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black; ">
+
+                                @if (Model != null && Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.Raw(item.Employeeid)</td>
+                                            <td>@Html.Raw(item.CasualLeaveUsed)</td>
+                                            <td>@Html.Raw(item.SickOrMedicalLeaveUsed)</td>
+                                            <td>@Html.Raw(item.MaternityLeaveUsed)</td>
+                                            <td>@Html.Raw(item.QuarantineLeaveUsed)</td>
+                                            <td>
+                                                @*<a href="/admin/employee_management?id=@(item.id)"><i class="fas fa-edit"></i></a>
+                                                    <a href="/admin/delet_employee?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a>*@
+                                                <a class="btn btn-link" href="/admin/manage_leave?id=@(item.id)" id="Edit"> <img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a>|
+
+                                                <a class="btn btn-link View-id" href="#" data-toggle="modal" data-target="#viewModal" data-id="@item.id" title="View">
+                                                    <img src="~/Contents/images/view.jpg" style="width:15px; height:15px" />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewModalLabel">Leave Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--<div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Employee ID:</strong> <span id="employeeId"></span></p>
+                <p><strong>Earned/Privilege Leave:</strong> <span id="EarnedOrPrivilegeLeave"></span></p>
+                <p><strong>Casual Leave:</strong> <span id="CasualLeave"></span></p>
+                <p><strong>Sick/Medical Leave:</strong> <span id="SickOrMedicalLeave"></span></p>
+                <p><strong>Maternity Leave:</strong> <span id="maternityLeave"></span></p>
+                <p><strong>Quarantine Leave:</strong> <span id="QuarantineLeave"></span></p>-->
+                @*<p><strong>Session Start From:</strong> <span id="SessionStartFrom"></span></p>*@
+                <!--</div>
+    <div class="col-md-6">
+        <p><strong>Employee Type:</strong> <span id="EmployeeType"></span></p>
+        <p><strong>Earned/Privilege Leave Used:</strong> <span id="EarnedOrPrivilegeLeaveUsed"></span></p>
+        <p><strong>Casual Leave Used:</strong> <span id="CasualLeaveUsed"></span></p>
+        <p><strong>Sick/Medical Leave Used:</strong> <span id="SickOrMedicalLeaveUsed"></span></p>
+        <p><strong>Maternity Leave Used:</strong> <span id="MaternityLeaveUsed"></span></p>
+        <p><strong>Quarantine Leave Used:</strong> <span id="QuarantineLeaveUsed"></span></p>-->
+                @*<p><strong>Session End To:</strong> <span id="SessionEndTo"></span></p>*@
+                <!--</div>
+        </div>
+    </div>-->
+
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><strong>Employee ID:</strong></td>
+                                <td><span id="employeeId"></span></td>
+                                <td><strong>Employee Type:</strong></td>
+                                <td><span id="EmployeeType"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Earned/Privilege Leave:</strong></td>
+                                <td><span id="EarnedOrPrivilegeLeave"></span></td>
+                                <td><strong>Earned/Privilege Leave Used:</strong></td>
+                                <td><span id="EarnedOrPrivilegeLeaveUsed"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Casual Leave:</strong></td>
+                                <td><span id="CasualLeave"></span></td>
+                                <td><strong>Casual Leave Used:</strong></td>
+                                <td><span id="CasualLeaveUsed"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sick/Medical Leave:</strong></td>
+                                <td><span id="SickOrMedicalLeave"></span></td>
+                                <td><strong>Sick/Medical Leave Used:</strong></td>
+                                <td><span id="SickOrMedicalLeaveUsed"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Maternity Leave:</strong></td>
+                                <td><span id="maternityLeave"></span></td>
+                                <td><strong>Maternity Leave Used:</strong></td>
+                                <td><span id="MaternityLeaveUsed"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quarantine Leave:</strong></td>
+                                <td><span id="QuarantineLeave"></span></td>
+                                <td><strong>Quarantine Leave Used:</strong></td>
+                                <td><span id="QuarantineLeaveUsed"></span></td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    // JavaScript to handle the click event on the "View" link
+    $(document).ready(function () {
+        $('.View-id').click(function () {
+            var id = $(this).data('id');
+            // AJAX request to fetch data from controller
+            $.ajax({
+                url: '/admin/view_leavebyid',
+                method: 'GET',
+                data: { Id: id },
+                success: function (data) {
+
+                    console.log("Data received:", data);
+                    // Populate modal with fetched data
+                    $('#employeeId').text(data.Employeeid);
+                    $('#EmployeeType').text(data.EmployeeType);
+                    $('#Department').text(data.Department);
+                    $('#EarnedOrPrivilegeLeave').text(data.EarnedOrPrivilegeLeave);
+                    $('#EarnedOrPrivilegeLeaveUsed').text(data.EarnedOrPrivilegeLeaveUsed);
+                    $('#CasualLeave').text(data.CasualLeave);
+                    $('#CasualLeaveUsed').text(data.CasualLeaveUsed);
+                    $('#SickOrMedicalLeave').text(data.SickOrMedicalLeave);
+                    $('#SickOrMedicalLeaveUsed').text(data.SickOrMedicalLeaveUsed);
+                    $('#maternityLeave').text(data.MaternityLeave);
+                    $('#MaternityLeaveUsed').text(data.MaternityLeaveUsed);
+                    $('#QuarantineLeave').text(data.QuarantineLeave);
+                    $('#QuarantineLeaveUsed').text(data.QuarantineLeaveUsed);
+                    $('#SessionStartFrom').text(data.SessionStartFrom);
+                    $('#SessionEndTo').text(data.SessionEndTo);
+                    $('#Status').text(data.Status);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    // Handle error here
+                }
+            });
+        });
+    });
+</script>

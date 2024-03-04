@@ -1,0 +1,624 @@
+﻿
+@{
+    ViewBag.Title = "viewleadsheetlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+<link href="~/Contents/css/model.css" rel="stylesheet" />
+<script src="~/Contents/plugins/tables/js/jquery.dataTables.min.js"></script>
+<script src="~/Contents/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+
+<style>
+    .adv-title {
+        background: #495057;
+        padding: 9px 0px;
+        color: #fff;
+        font-size: 19px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .content-body .container-fluid {
+        padding: 15px 29px 0;
+    }
+
+    .form-control {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        height: 20px !important;
+        min-height: 30px !important;
+    }
+
+    .custom-btn1 {
+        background-color: #00419d; /* Default background color */
+        color: white;
+        transition: background-color 0.3s ease;
+        padding:6px 24px !important;
+    }
+    .adv-title {
+        padding: 5px !important;
+        margin-bottom: 3px !important;
+    }
+    .fa-rocket{
+        color:darkgreen;
+        font-size:14px;
+    }
+    .fa-share {
+        color: orange;
+        font-size: 14px;
+    }
+    .fa-eye {
+        color: #0820a3;
+        font-size: 14px;
+    }
+
+    .custom-modal-dialog {
+        max-width: 600px;
+    }
+
+    .custom-modal-content {
+        border-radius: 10px;
+    }
+
+    .custom-modal-header {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .custom-modal-body {
+        padding: 20px;
+    }
+
+    .custom-modal-footer {
+        border-radius: 0 0 10px 10px;
+    }
+
+    .client-details span {
+        color: black;
+        font-weight: bold;
+    }
+
+    .client-details {
+        margin-bottom: 15px;
+    }
+
+    .label1 {
+        font-weight: bold;
+    }
+</style>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="padding-top:0px" ;>
+                    <div class="form-group row justify-content-md-center" style="background-color:#495057; ">
+                        <h2 class="adv-title">Lead List</h2>
+                    </div>
+                    <table>
+
+                        <tr>
+                            <td style="background-color: #E3e2ab; width: 10px; height: 10px; border: 1px solid black;"></td>
+                            <td style=" width: 10px; height: 10px;"></td>
+                            <td>Agent</td>
+                            <td style=" width: 10px; height: 10px;"></td>
+                            <td style="background-color: #Abe3c8; width: 10px; height: 10px; border: 1px solid black; "></td>
+                            <td style=" width: 10px; height: 10px;"></td>
+                            <td>Sales</td>
+                            <td style=" width: 10px; height: 10px;"></td>
+                            <td style="background-color: aliceblue; width: 10px; height: 10px; border: 1px solid black; "></td>
+                            <td style=" width: 10px; height: 10px;"></td>
+                            <td>Admin</td>
+                            <td></td>
+                        </tr>
+
+                    </table>
+                    <br /><br />
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th>Client Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Contact No</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Product Info</th>
+                                    <th hidden></th>
+                                    <th hidden></th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black; ">
+                                @{
+                                    int i = 1;
+
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.client_name</td>
+                                            <td>@item.contactperson</td>
+                                            <td>@item.contact_no</td>
+                                            <td>@item.eMAIL_ID</td>
+                                            <td>@item.address</td>
+                                            <td>@item.productname</td>
+                                            <td hidden>@item.id</td>
+                                            <td hidden>@item.assignStatus</td>
+
+                                            @if (@item.generateStatus == "0")
+                                            {
+                                                if (Session["usertype"].ToString() == "admin")
+                                                {
+                                                    <td>   <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_leadBySalesman?id=@(item.id)"><img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> </td>
+                                                }
+                                                else
+                                                {
+
+                                                    if (Session["usertype"].ToString() == "agent")
+                                                    {
+                                                        <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> |   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span> </td>
+
+                                                    }
+                                                    else if (Session["usertype"].ToString() == "sales")
+                                                    {
+                                                        if (@item.assignTo == Session["employeeId"].ToString() | @item.assignTo == "")
+                                                        {
+                                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> |   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span> </td>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <td> <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a> </td>
+
+                                                        }
+                                                    }
+
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (Session["usertype"].ToString() == "admin")
+                                                {
+                                                    <td>
+                                                        <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_lead?id=@(item.id)"> <img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> |   <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    if (@item.assignTo != Session["employeeId"].ToString())
+                                                    {
+                                                        <td>
+                                                            <span style="color:black" class="disabled">Generated </span> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
+                                                        </td>
+                                                    }
+                                                }
+                                            }
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="showleaddetailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">lead Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table id="detailstable" class="table">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="showleadsheetstatus">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">lead Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table id="leadsheetdeatails" class="table">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="reassignLeadModal2">
+        <div class="modal-dialog custom-modal-dialog">
+            <div class="modal-content custom-modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header custom-modal-header">
+                    <h4 class="modal-title">Lead Transfer</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body custom-modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="client-details">
+                                <span style="color:black">Client : </span> <span style="color: #0fa7a7 " id="clientname"></span> |
+                                <span style="color:black">Contact Person : </span> <span style="color: #0fa7a7 " id="contactPerson"></span> |
+                                @*<span style="color:black">Contact No: </span><span style="color: #0fa7a7 " id="contactno"></span> |
+                                <span style="color:black">Email : </span><span style="color: #0fa7a7 " id="email"></span> |*@
+                                <span style="color:black">Product Info : </span><span style="color: #0fa7a7" id="productInfo"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <form id="reassignForm">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="col-form-label label1">Employee Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <select class="form-control sn-required" name="agentId">
+                                        <option value="">-- Please Select --</option>
+                                        @if (ViewBag.ReAssigemploye_list != null)
+                                        {
+                                            foreach (var item in ViewBag.ReAssigemploye_list as List<CloudgenProject.Models.admin.employe_list>)
+                                            {
+                                                <option value="@item.employee_id">@item.name</option>
+                                            }
+                                        }
+                                    </select>
+                                    <input type="hidden" id="userType" name="userType" />
+                                    <span class="agentError erorr" style="color:red"></span>
+                                    <input type="hidden" id="LeadId" name="LeadId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-sm custom-btn1" id="btnReassign">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer custom-modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //$('#example1').DataTable({
+
+
+    //    "fnRowCallback": function (nRow, aData) {
+    //        if (aData[8] == "1") {
+    //            $('td', nRow).css('background-color', 'aliceblue');
+    //        } else if (aData[8] == "2") {
+    //            $('td', nRow).css('background-color', '#Abe3c8');
+    //        }
+    //        else if (aData[8] == "3") {
+    //            $('td', nRow).css('background-color', '#E3e2ab');
+    //        }
+    //    }
+    //});
+
+    $(document).ready(function () {
+
+        function initializeDataTable() {
+            $('#example1').DataTable({
+                "fnRowCallback": function (nRow, aData) {
+                    if (aData[8] == "1") {
+                        $('td', nRow).css('background-color', 'aliceblue');
+                    } else if (aData[8] == "2") {
+                        $('td', nRow).css('background-color', '#CFEDDF');
+                    } else if (aData[8] == "3") {
+                        $('td', nRow).css('background-color', '#F3F3D2');
+                    }
+                }
+            });
+        }
+
+        // Call initializeDataTable function initially
+        initializeDataTable();
+
+
+        $('#example1').on('click', '.showdetail', function (ev) {
+            ev.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    //  console.log(data);
+
+                    var tableHTML = '';
+
+                    $.each(data, function (index, item) {
+                        // alert(index);
+                        // LeadStatus
+                        if (index != 'id' && index != 'employee_first_name' && index != 'LeadID' && index != 'countrylist' && index != 'employe_list' && index != 'assignStatus') {
+
+                            tableHTML += '<tr>';
+                            if (index == 'LeadStatus') {
+                                if (item == undefined || item == 0) {
+                                    item == 'InProgress'
+                                } else {
+                                    item == 'InProgress'
+                                }
+
+                            }
+                            tableHTML += '<th>' + index.replace(/#|_/g, ' ') + ': </th>';
+                            tableHTML += '<td>' + item + '</td>';
+                            tableHTML += '</tr>';
+                        }
+                    });
+
+                    $('#detailstable').html(tableHTML);
+
+                    $('#showleaddetailsModal').modal('show');
+
+                },
+                error: function (error) {
+                    // Code to handle the error
+                    console.error('Error occurred', error);
+                }
+            });
+
+            // alert(action);
+        });
+
+
+
+
+
+
+        $(' #example1 ').on('click', '.showleadsheetstaus', function (ev) {
+            ev.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    //  console.log(data);
+
+                    var tableHTML = '';
+
+                    $.each(data, function (index, item) {
+                        // alert(index);
+                        if (index != 'id' && index != 'generateStatus' && index != 'assignStatus' && index != 'fileupload1') {
+                            tableHTML += '<tr>';
+                            tableHTML += '<th>' + index.replace(/#|_/g, ' ') + ': </th>';
+                            tableHTML += '<td>' + item + '</td>';
+                            tableHTML += '</tr>';
+                        }
+                    });
+
+                    $('#leadsheetdeatails').html(tableHTML);
+
+                    $('#showleadsheetstatus').modal('show');
+
+                },
+                error: function (error) {
+                    // Code to handle the error
+                    console.error('Error occurred', error);
+                }
+            });
+
+            // alert(action);
+        });
+
+
+        // re assign lead
+
+
+
+        $(document).on('click', 'table#example1 tbody tr td .re-assign', function () {
+
+            // $('#myModal').modal({ show: true });
+            //console.log('shdkfh');
+
+            var currentRow = $(this).closest("tr");
+
+            var clientName = currentRow.find("td:eq(1)").html();
+            var contactPerson = currentRow.find("td:eq(2)").html();
+            var contactno = currentRow.find("td:eq(3)").html();
+            var email = currentRow.find("td:eq(4)").html();
+            var product = currentRow.find("td:eq(6)").html();
+            var LeadId = currentRow.find("td:eq(7)").html();
+            // alert(LeadId);
+
+            $('#clientname').html(clientName);
+            $('#contactPerson').html(contactPerson);
+            $('#contactno').html(contactno);
+            $('#email').html(email);
+            $('#productInfo').html(product);
+            $('#LeadId').val(LeadId);
+
+            console.log('Contact Number:', contactno);
+            console.log('Email:', email);
+            console.log('name:', clientname);
+            console.log('person:', contactPerson);
+
+            $('#reassignLeadModal2').modal('show');
+
+
+
+
+
+
+
+            $("#btnReassign").click(function (ev) {
+                ev.preventDefault();
+                // $("#userloginform").validate();
+
+                var agentId = $('select[name="agentId"]').val();
+                var userType = $('#userType').val();
+
+                // Validate agent ID
+                if (agentId == '' || agentId == undefined) {
+                    $('.agentError').html('Please select an agent');
+                    return false;
+                } else {
+                    $('.agentError').html('');
+                }
+
+                // alert('re assign');
+                var selectLeadId = $('#LeadId').val();
+                //  alert(selectLeadId);
+
+                $.ajax({
+                    url: '/admin/transferLead/',
+                    // data: { 'assigObj': postData },
+                    data: JSON.stringify({ agentId: '' + agentId + '', LeadId: '' + selectLeadId + '', userType: '' + userType + '' }),
+
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        setTimeout(location.reload.bind(location), 1);
+
+                        // console.log(data);
+
+                    },
+                    error: function (request, error) {
+                        alert("something error occure");
+
+
+
+                    }
+                });
+
+            });
+
+
+
+
+
+
+        });
+
+
+
+
+        $(".leadGenerate").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Click For Lead Generate ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+
+
+        $(".leadBacktransfer").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Click For Lead Transfer ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+
+
+        $(".showdetail").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Show Details ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+        $(".showleadsheetstaus").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Show Details ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+
+
+        // Function to destroy DataTable instance
+        function destroyDataTable() {
+            if ($.fn.DataTable.isDataTable('#example1')) {
+                $('#example1').DataTable().destroy();
+            }
+        }
+
+        // Example of destroying and re-initializing DataTable
+        $('#someButton').on('click', function () {
+            // Destroy DataTable
+            destroyDataTable();
+
+            // Perform other actions
+
+            // Re-initialize DataTable
+            initializeDataTable();
+        });
+
+
+        $("#reassignForm").on("change", 'select[name="agentId"]', function () {
+            var selectedEmployeeId = $(this).val();
+
+            // Make an AJAX request to fetch the user type
+            $.ajax({
+                url: '/admin/getUserType',
+                type: 'POST',
+                data: { employeeId: selectedEmployeeId },
+                success: function (response) {
+                    // Assuming the response contains the user type
+                    var userType = response;
+
+                    console.log(userType);
+
+                    // Set the fetched user type into the hidden field
+                    $('#userType').val(userType);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error occurred while fetching user type:', error);
+                }
+            });
+        });
+
+    });
+
+
+
+</script>

@@ -1,0 +1,174 @@
+﻿@model CloudgenProject.Models.admin.manage_sequence
+
+@{
+    ViewBag.Title = "add_sequence";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    label {
+        color: #3391b7;
+    }
+
+    textarea.form-control {
+        height: 38px;
+    }
+
+    .form-control {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        height: 20px !important;
+        min-height: 30px !important;
+    }
+
+    .custom-btn {
+        background-color: #88c3d8; /* Default background color */
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #3391b7; /* Background color on hover */
+        }
+</style>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!--<section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add /Update Sequence</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Sequence Mangement</li>
+                    </ol>
+                </div>
+            </div>
+        </div>-->
+    <!-- /.container-fluid -->
+    <!--</section>-->
+
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Add/Update Sequence</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @using (Html.BeginForm("insert_sequence", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Branch</label>
+                                            <input type="text" class="form-control" placeholder="Enter Branch..." name="Branch" value="@Model.Branch" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>QuotationPrefixNo</label>
+                                            <input type="text" class="form-control" placeholder="Enter Quotation Prefix No..." name="QuotationPrefixNo" value="@Model.QuotationPrefixNo" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>QuotationNo</label>
+                                            <input type="text" class="form-control" placeholder="Enter Quotation No..." name="QuotationNo" value="@Model.QuotationNo" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>SaleBookPrefixNo</label>
+                                            <input type="text" class="form-control" placeholder="Enter Sale Book Prefix No. ..." name="SaleBookPrefixNo" value="@Model.SaleBookPrefixNo" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>SaleBook No</label>
+                                            <input type="text" class="form-control" placeholder="Enter SaleBook No..." name="SaleBookNo" value="@Model.SaleBookNo" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>PI Prefix No</label>
+                                            <input type="text" class="form-control" placeholder="Enter PI Prefix No..." name="PIPrefixNo" value="@Model.PIPrefixNo" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>PI No.</label>
+                                            <input type="text" class="form-control" placeholder="Enter PI No..." name="PINo" value="@Model.PINo" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>PO Prefix No</label>
+                                            <input type="text" class="form-control" placeholder="Enter PO Prefix No..." name="POPrefixNo" value="@Model.POPrefixNo" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>PO No.</label>
+                                            <input type="text" class="form-control" placeholder="Enter PO No. ..." name="PONo" value="@Model.PONo" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>InvoicePrefixNo</label>
+                                            <input type="text" class="form-control" placeholder="Enter Invoice PrefixNo..." name="InvoicePrefixNo" value="@Model.InvoicePrefixNo" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- textarea -->
+                                        <div class="form-group">
+                                            <label>InvoiceNo</label>
+                                            <input type="text" class="form-control" placeholder="Enter Invoice No..." name="InvoiceNo" value="@Model.InvoiceNo" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="card-footer">
+                                    <input type="hidden" name="id" id="id" value="@Model.id" />
+                                    <button type="submit" class="btn custom-btn">Submit</button>
+                                </div>
+
+                            }
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

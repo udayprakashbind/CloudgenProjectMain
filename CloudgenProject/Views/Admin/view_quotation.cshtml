@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "view_quotation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .adv-title {
+        background: #495057;
+        padding: 9px 0px;
+        color: #fff;
+        font-size: 19px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .content-body .container-fluid {
+        padding: 15px 29px 0;
+    }
+
+    .form-control {
+        height: 35px !important;
+        border: 1px solid #88c3d8;
+    }
+
+    .adv-title {
+        padding: 5px !important;
+        margin-bottom: 3px !important;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link href="~/Contents/css/model.css" rel="stylesheet" />
+<script src="~/Contents/plugins/tables/js/jquery.dataTables.min.js"></script>
+<script src="~/Contents/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="padding-top:0px" ;>
+                    <div class="form-group row justify-content-md-center" style="background-color:#495057; ">
+                        <h2 class="adv-title">Quotation List</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No.</th>
+                                    <th>Quotation_No</th>
+                                    <th>Lead_Reference</th>
+                                    <th>Client_Name</th>
+                                    <th>Contact_Person_No</th>
+                                    <th>Email</th>
+                                    <th>Company_Number</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black; ">
+                                @{
+                                    int i = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.Quotation_No</td>
+                                            <td>@item.Lead_Reference</td>
+                                            <td>@item.Client_Name</td>
+                                            <td>@item.Contact_Person_No</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Company_Number</td>
+                                            <td>@item.Address</td>
+                                            <td>
+
+                                                @if (Session["usertype"].ToString() == "admin")
+                                                {
+                                                    <a href="/admin/view_quotationdeatailsbyId?id=@(item.id)" class="btn btn-sm showdetail" title="View"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/admin/view_quotationdeatailsbyId?id=@(item.id)" class="btn btn-sm showdetail" title="View"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /> | </a>
+                                                    <a href="/admin/add_quotation?id=@(item.id)" title="Edit"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" />| </a>
+                                                    <a class="btn btn-link delete-id" href="#" data-id="@item.id" title="Delete" style="padding:0px"><img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /> | </a>
+                                                    <a href="/admin/add_quotation?leadId=@(item.Lead_Reference)" title="Send New Quotation"><span class="requotation"> <i class="fa fa-rocket" aria-hidden="true" style="color:darkgreen"></i></span></a>
+                                                }
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="showquotdetailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Quotation Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <table id="detailstable" class="table">
+                    </table>
+                </div>
+                <div class="modal-footer">  
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        // Function to destroy DataTable
+        function destroyDataTable() {
+            if ($.fn.DataTable.isDataTable('#example1')) {
+                $('#example1').DataTable().destroy();
+            }
+        }
+
+        // Initialize DataTable
+        $('#example1').DataTable();
+
+        // $('#showquotdetailsModal').modal('show');
+
+        $('.showdetail').on('click', function (ev) {
+            ev.preventDefault();
+
+            
+
+            var url = $(this).attr("href");
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    var tableHTML = '';
+
+                    $.each(data, function (index, item) {
+                        if (index != 'id' && index != 'Lead_Reference' && index != 'GeneratedBy') {
+                            tableHTML += '<tr>';
+                            tableHTML += '<th>' + index.replace(/#|_/g, ' ') + ': </th>';
+                            tableHTML += '<td>' + item + '</td>';
+                            tableHTML += '</tr>';
+                        }
+                    });
+
+                    $('#detailstable').html(tableHTML);
+                    $('#showquotdetailsModal').modal('show');
+                },
+                error: function (error) {
+                    // Code to handle the error
+                    console.error('Error occurred', error);
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Add a click event handler to the delete button with the class "delete-id"
+        $('.delete-id').click(function (e) {
+            e.preventDefault();
+
+            // Get the school ID from the data attribute
+            var Id = $(this).data('id');
+
+            // Show a confirmation dialog using Swal
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes," proceed with the deletion
+                    window.location.href = '/admin/delet_quotation?id=' + Id;
+                }
+            });
+        });
+    });
+</script>

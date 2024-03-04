@@ -1,0 +1,24 @@
+﻿label1 {
+    color: #3391b7;
+}
+
+textarea.form-control {
+    height: 38px;
+}
+
+.form-control {
+    padding: 2px 4px !important;
+    font-size: 10px !important;
+    height: 20px !important;
+    min-height: 30px !important;
+}
+
+.custom-btn {
+    background-color: #88c3d8; /* Default background color */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+    .custom-btn:hover {
+        background-color: #3391b7; /* Background color on hover */
+    }

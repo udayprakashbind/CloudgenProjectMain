@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "addLeadManualyBySalesMan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    label {
+        color: #3391b7;
+    }
+
+    textarea.form-control {
+        height: 38px;
+    }
+
+    .form-control {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        height: 20px !important;
+        min-height: 30px !important;
+    }
+
+    .custom-btn {
+        background-color: #88c3d8; /* Default background color */
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #3391b7; /* Background color on hover */
+        }
+</style>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!--<section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Employee Mangement</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee Mangement</li>
+                    </ol>
+                </div>
+            </div>
+        </div>-->
+    <!-- /.container-fluid -->
+    <!--</section>-->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Add/Update Lead</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("insertLeadManualyBySalesMan", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <form>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <label>Client Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter Client Name ..." name="client_name" value="@Model.client_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Contact No.</label>
+                                                <input type="text" class="form-control" placeholder="Enter Contact No ..." name="contact_no" value="@Model.contact_no" required maxlength="10">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <label>Email_ID</label>
+                                                <input type="email" class="form-control" placeholder="Enter email ..." name="eMAIL_ID" value="@Model.eMAIL_ID" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control" placeholder="Enter address ..." name="address" value="@Model.address" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <label>Product Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter product name ..." name="productname" value="@Model.productname" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Contact Person</label>
+                                                <input type="text" class="form-control" placeholder="Enter contact person ..." name="contactperson" value="@Model.contactperson" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="card-footer">
+                                        <input type="hidden" name="id" id="id" value="@Model.id" />
+                                        <button type="submit" class="btn custom-btn">Submit</button>
+                                    </div>
+                            </form>
+                        }
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("[data-select]").each(function () {
+            var obj = $(this);
+            obj.val(obj.attr("data-select"))
+        });
+        console.log(data-select);
+    });
+</script>

@@ -1,0 +1,144 @@
+﻿@model CloudgenProject.Models.admin.manage_designation
+
+@{
+    ViewBag.Title = "designation_management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .adv-title {
+        background: #495057;
+        padding: 9px 0px;
+        color: #fff;
+        font-size: 19px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .content-body .container-fluid {
+        padding: 15px 29px 0;
+    }
+
+    .label1 {
+        color: #3391b7;
+    }
+
+    .form-control {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        height: 20px !important;
+        min-height: 30px !important;
+    }
+
+    .custom-btn {
+        background-color: #88c3d8; /* Default background color */
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #3391b7; /* Background color on hover */
+        }
+
+    input[type="checkbox"]:checked:after {
+        color: #5fa9cf !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Designation Mangement Field</h3>
+                </div>
+                <br />
+                <div class="card-body" style="padding-top:0px" ;>
+                    @using (Html.BeginForm("insert_designation", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label label1">Designation Name</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter designation Name ..." name="designation" value="@Model.designation" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input type="hidden" name="id" id="id" value="@Model.id" />
+                                    <button type="submit" class="btn custom-btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-body" style="padding-top:0px" ;>
+                    <div class="form-group row justify-content-md-center" style="background-color:#495057; ">
+                        <h2 class="adv-title">Designation List</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No.</th>
+                                    <th>designation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black; ">
+                                @if (ViewBag.list != null)
+                                {
+                                    var sn = 1;
+                                    foreach (var item in ViewBag.list as List<CloudgenProject.Models.admin.manage_designation>)
+                                    {
+                                        <tr>
+                                            <td>@sn</td>
+                                            <td>@item.designation</td>
+
+                                            <td>
+                                                <a class="btn btn-link" href="/admin/designation_management?id=@(item.id)" id="Edit"> <img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a>|
+                                                <a class="btn btn-link delete-id" href="#" data-id="@item.id" title="Delete">
+                                                    <img src="~/Contents/images/Delete.png" style="width:15px; height:15px" />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        sn++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Add a click event handler to the delete button with the class "delete-id"
+        $('.delete-id').click(function (e) {
+            e.preventDefault();
+
+            // Get the school ID from the data attribute
+            var Id = $(this).data('id');
+
+            // Show a confirmation dialog using Swal
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes," proceed with the deletion
+                    window.location.href = '/admin/delete_designation?id=' + Id;
+                }
+            });
+        });
+    });
+</script>
+

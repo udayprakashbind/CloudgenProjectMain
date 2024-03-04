@@ -1,0 +1,89 @@
+﻿/* CSS for showleaddetailsModal */
+.modal-dialog {
+    max-width: 800px; /* Set maximum width of the modal */
+}
+
+.modal-title {
+    color: white !important;
+}
+
+.modal-content {
+    background-color: #f8f9fa; /* Background color */
+    color: #333; /* Text color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.modal-header {
+    background-color: #00419d; /* Header background color */
+    color: #fff; /* Header text color */
+    border-bottom: none; /* Remove border bottom */
+    border-radius: 10px 10px 0 0; /* Rounded corners on top */
+}
+
+.modal-body {
+    padding: 20px; /* Add padding */
+    max-height: 400px; /* Set maximum height of the modal body */
+    overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
+    background: white;
+}
+
+.modal-footer {
+    border-top: none; /* Remove border top */
+    border-radius: 0 0 10px 10px; /* Rounded corners on bottom */
+}
+
+/* Close button style */
+.close {
+    color: red; /* Close button color */
+    opacity: 1; /* Full opacity */
+}
+
+    /* Close button hover effect */
+    .close:hover {
+        color: red; /* Close button color on hover */
+        text-decoration: none; /* Remove underline */
+    }
+
+/* Table inside the modal */
+.modal-body table {
+    width: 100%; /* Make the table full width */
+    margin-bottom: 0; /* Remove bottom margin */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+    /* Table header style */
+    .modal-body table th {
+        /*background-color: #007bff;*/ /* Header background color */
+        /*color: #fff;*/ /* Header text color */
+        text-align: left; /* Align text to the left */
+        padding: 10px; /* Add padding */
+        border-top: 1px solid #ddd;
+    }
+
+    /* Table cell style */
+    .modal-body table td {
+        padding: 10px; /* Add padding */
+        border-top: 1px solid #ddd; /* Add top border */
+    }
+
+    /* Alternate row background color */
+    .modal-body table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Even row background color */
+    }
+
+    /* Hover effect for table rows */
+    .modal-body table tbody tr:hover {
+        background-color: #ddd; /* Hover background color */
+    }
+
+.btn-danger {
+    color: #fff;
+    background-color: #c10000 !important;
+    border-color: #c10000 !important;
+}
+.custom-btn1 {
+    background-color: #00419d; /* Default background color */
+    color: white;
+    transition: background-color 0.3s ease;
+    padding: 6px 24px !important;
+}
