@@ -338,47 +338,59 @@
 
                             foreach (var item in ViewBag.list as List<CloudgenProject.Models.admin.leadstatusmodel>)
                             {
-                                <tr>
-                                    <td>@i</td>
-                                    <td>@item.client</td>
-                                    <td>@item.ContactPerson</td>
-                                    <td>@item.contac_no</td>
-                                    <td hidden>@item.contactemail</td>
-                                    <td>@item.product</td>
-                                    <td>@item.response</td>
-                                    <td>@item.assignby</td>
-                                    <td>@item.assignTo</td>
-                                    <td>@item.next_follow_up_date</td>
-                                    @if (@item.status != "1")
-                                    {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@item.client</td>
+                                                    <td>@item.ContactPerson</td>
+                                                    <td>@item.contac_no</td>
+                                                    <td hidden>@item.contactemail</td>
+                                                    <td>@item.product</td>
+                                                    <td>@item.response</td>
+                                                    <td>@item.assignby</td>
+                                                    <td>@item.assignTo</td>
+                                                    <td>@item.next_follow_up_date</td>
+                                                    @if (item.generateStatus == "0")
+                                                    {
+                                                        <td> Pending </td>
 
-                                        // leadstatus complete or inProgress
-                                        <td>Inprogress</td>
-
-                                    }
-                                    else
-                                    {
-                                        <td>Completed</td>
-                                    }
+                                                    }
+                                                    else
+                                                    {
 
 
-                                    <td hidden>@item.assignstatus</td>
+                                                        if (item.status == "1")
+                                                        {
 
-                                    <td>
-                                        <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||
-                                        <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-                                    </td>
+                                                            // leadstatus complete or inProgress
+                                                            <td> Completed </td>
 
-                                    @*@if (@item.generateStatus == "0")
-                                        {
-                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
-                                        }
-                                        else
-                                        {
-                                            <td><span style="color:black" class="disabled">Generated </span> </td>
 
-                                        }*@
-                                </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td> Inprogress </td>
+
+                                                        }
+
+                                                    }
+
+                                                    <td hidden>@item.assignstatus</td>
+
+                                                    <td>
+                                                        <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||
+                                                        <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                                    </td>
+
+                                                    @*@if (@item.generateStatus == "0")
+        {
+            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
+        }
+        else
+        {
+            <td><span style="color:black" class="disabled">Generated </span> </td>
+
+        }*@
+                                                </tr>
                                 i++;
                             }
 

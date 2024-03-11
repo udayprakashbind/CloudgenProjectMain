@@ -68,6 +68,7 @@ namespace CloudgenProject.Models.admin
         public string assignby { get; set; }
         public string next_follow_up_date { get; set; }
         public string status { get; set; }
+        public string generateStatus { get; set; }
         public string assignstatus { get; set; }
         public string ContactPerson { get; set; }
         public string client { get; set; }
