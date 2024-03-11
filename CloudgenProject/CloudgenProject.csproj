@@ -609,6 +609,7 @@
     <Content Include="Views\Admin\employee_management.cshtml" />
     <Content Include="Views\Admin\department_management.cshtml" />
     <Content Include="Views\Admin\designation_management.cshtml" />
+    <Content Include="Views\Admin\Todayfollowuplist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

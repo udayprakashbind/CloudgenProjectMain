@@ -62,7 +62,10 @@ namespace CloudgenProject.Controllers
             }
 
             ViewBag.list = leaddetails;
-            var hh = db.total_count();
+            var logintype = Session["usertype"].ToString();
+           
+
+            var hh = db.total_count_admin(logintype);
             return View(hh);
         }
 
@@ -90,7 +93,8 @@ namespace CloudgenProject.Controllers
                 {
                     leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
                     {
-                        leadId = sdr["LeadId"].ToString(),
+                       // leadId = sdr["LeadId"].ToString(),
+                        leadId = sdr["id"].ToString(),
                         response = sdr["response"].ToString(),
                         status = sdr["status"].ToString(),
                         next_follow_up_date = sdr["next_follow_up_date"].ToString(),
@@ -107,8 +111,11 @@ namespace CloudgenProject.Controllers
             }
 
             ViewBag.list = leaddetails;
-            var hh = db.total_count();
-            return View();
+
+            var logintype = Session["usertype"].ToString();
+
+            var hh = db.total_count_sales(logintype, loginId);
+            return View(hh);
         }
 
         public ActionResult agent_dashboard()
@@ -119,8 +126,48 @@ namespace CloudgenProject.Controllers
                 string url = Request.Url.PathAndQuery;
                 return Redirect("/admin/login?url=" + HttpUtility.UrlEncode(url) + "");
             }
+            var logintype = Session["usertype"].ToString();
+            var loginId = Session["employeeId"].ToString();
 
-            return View();
+        
+
+            List<CloudgenProject.Models.admin.leadstatusmodel> leaddetails = new List<CloudgenProject.Models.admin.leadstatusmodel>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_leadresponse", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", "viewLeadstatusForagent");
+            cmd.Parameters.AddWithValue("@assignedTo", loginId);
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
+                    {
+                        // leadId = sdr["LeadId"].ToString(),
+                        leadId = sdr["id"].ToString(),
+                        response = sdr["response"].ToString(),
+                        status = sdr["status"].ToString(),
+                        next_follow_up_date = sdr["next_follow_up_date"].ToString(),
+                        client = sdr["client_name"].ToString(),
+                        ContactPerson = sdr["ContactPerson"].ToString(),
+                        contac_no = sdr["contact_no"].ToString(), // corrected variable name
+                        contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
+                        product = sdr["productname"].ToString(),
+                        assignTo = sdr["assignedToName"].ToString(),
+                        assignby = sdr["assignedByName"].ToString(),
+                        assignstatus = sdr["assignstatus"].ToString(),
+                    });
+                }
+            }
+
+            ViewBag.list = leaddetails;
+
+
+
+            var hh = db.total_count_agent(logintype, loginId);
+            return View(hh);
         }
         #endregion
 
@@ -1924,6 +1971,19 @@ namespace CloudgenProject.Controllers
             var obj = db.getfollowUpLeadResponse(id);
 
             return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+        //today follow up list view manage make for agent
+        public ActionResult Todayfollowuplist()
+        {
+         
+             DateTime   todayfollowUpDate = DateTime.Now;
+            
+            var loginid = Session["employeeId"].ToString();
+
+            List<todayfollowupmodel> todayfollow = new List<todayfollowupmodel>();
+            todayfollow = db.todayfollowuplist(loginid, todayfollowUpDate);
+            return View(todayfollow);
         }
 
         public ActionResult next_followup_responseNotification()

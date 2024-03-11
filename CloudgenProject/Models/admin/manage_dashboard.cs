@@ -15,6 +15,8 @@ namespace CloudgenProject.Models.admin
         public int total_vendor { get; set;}
         public int total_pi { get; set;}
         public int total_po { get; set; }
+        public int TotalFollowUp { get; set; }
+        public int TotalTodayFollowUp { get; set; }
 
     }
 }

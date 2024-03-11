@@ -13,7 +13,9 @@
         font-weight: 100;
         text-align: center;
     }
-
+    .hiddenId{
+        display:none;
+    }
     .content-body .container-fluid {
         padding: 15px 29px 0;
     }
@@ -97,7 +99,7 @@
                                             <td>
                                                 <a href="/admin/viewAssignedLeadByLeadId?leadId=@(item.LeadID)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
 
-                                                <span class="re-assign"> <i class="fas fa-share"></i></span>
+                                                @*<span class="re-assign"> <i class="fas fa-share"></i></span>*@
                                                 @*  <span><a href="/admin/viewAssignedLeadByLeadId?leadId=@(item.LeadID)"><i class="fa fa-eye" aria-hidden="true"></i></a></span>*@
                                             </td>
                                         </tr>

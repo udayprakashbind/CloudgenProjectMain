@@ -125,6 +125,29 @@
                                 @*<input type="hidden" name="id" id="response_id" />*@
 
                             </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Lead Type</label>
+                                        <div class="form-group">
+                                            <select class="form-control sn-required" name="leadtype" id="leadtype">
+                                                <option value="">--Lead Type--</option>
+
+
+                                                <option value="hot">hot</option>
+                                                <option value="cold">cold</option>
+
+
+                                            </select>
+                                        </div>
+                                        <span class="leadtypeError erorr" style="color:red"></span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
                             <div class="card-footer">
                                 <button type="submit" class="btn custom-btn" id="btnsubmitresponse">Submit</button>
                             </div>
@@ -154,6 +177,7 @@
                                     <tr>
                                         <th>Response</th>
                                         <th>Current Date</th>
+                                        <th>LeadType</th>
                                         <th>Next Follow UP Date</th>
                                         <th>Status</th>
                                     </tr>
@@ -165,6 +189,7 @@
                                             <tr>
                                                 <td>@item.response</td>
                                                 <td>@item.current_date</td>
+                                                <td>@item.leadType</td>
                                                 <td>@item.nextfollow_up_date</td>
                                                 @if (item.status == "0")
                                                 {
@@ -221,7 +246,8 @@
             if (!status) {
                 $('.StatusError').html('Please select status');
                 return false;
-            } else {
+            }
+            else {
                 $('.StatusError').html('');
             }
 
@@ -229,8 +255,17 @@
             if (!response) {
                 $('.responseError').html('Please fill response');
                 return false;
-            } else {
+            } 
+            else {
                 $('.responseError').html('');
+            }
+            // validate leadtype
+            var leadtype = $('select[name="leadtype"]').val();
+            if (leadtype == '' || leadtype == undefined) {
+                $('.leadtypeError').html('Please select lead type');
+                return false;
+            } else {
+                $('.leadtypeError').html('');
             }
 
             // Validate next follow-up date if status is 'inprogress'
@@ -250,6 +285,7 @@
                 current_date: $('#current_date').val(),
                 nextfollow_up_date: $('#nextfollow_up_date').val(),
                 status: status,
+                leadtype: $('#leadtype').val(),
                 AgentId: $('#AgentId').val(),
                 LeadId: $('#LeadId').val(),
             };
@@ -272,9 +308,11 @@
                     $('#example1').DataTable().clear().destroy();
 
                     // Re-populate DataTable with updated data
+                    
                     $.each(data, function (index, item) {
                         var statusText = item.status == '0' ? 'InProgress' : 'Complete';
-                        $('#example1 tbody').append('<tr><td>' + item.response + '</td><td>' + item.current_date + '</td><td>' + item.nextfollow_up_date + '</td><td>' + statusText + '</td></tr>');
+                        $('#example1 tbody').append('<tr><td>' + item.response + '</td><td>' + item.current_date + '</td><td>' +item.leadType+ '</td><td>' + item.nextfollow_up_date + '</td><td>' + statusText + '</td></tr>');
+                        i++;
                     });
 
                     // Re-initialize DataTable

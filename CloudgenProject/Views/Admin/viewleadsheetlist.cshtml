@@ -139,73 +139,73 @@
 
                                     foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>@i</td>
-                                            <td>@item.client_name</td>
-                                            <td>@item.contactperson</td>
-                                            <td>@item.contact_no</td>
-                                            <td>@item.eMAIL_ID</td>
-                                            <td>@item.address</td>
-                                            <td>@item.productname</td>
-                                            <td hidden>@item.id</td>
-                                            <td hidden>@item.assignStatus</td>
+                                                                <tr>
+                                                                    <td>@i</td>
+                                                                    <td>@item.client_name</td>
+                                                                    <td>@item.contactperson</td>
+                                                                    <td>@item.contact_no</td>
+                                                                    <td>@item.eMAIL_ID</td>
+                                                                    <td>@item.address</td>
+                                                                    <td>@item.productname</td>                                                              
+                                                                    <td hidden>@item.id</td>
+                                                                    <td hidden>@item.assignStatus</td>
 
-                                            @if (@item.generateStatus == "0")
-                                            {
-                                                if (Session["usertype"].ToString() == "admin")
-                                                {
-                                                    <td>   <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_leadBySalesman?id=@(item.id)"><img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> </td>
-                                                }
-                                                else
-                                                {
+                                                                    @if (@item.generateStatus == "0")
+                                                                    {
+                                                                        if (Session["usertype"].ToString() == "admin")
+                                                                        {
+                                                                            <td>   <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_leadBySalesman?id=@(item.id)"><img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> </td>
+                                                                        }
+                                                                        else
+                                                                        {
 
-                                                    if (Session["usertype"].ToString() == "agent")
-                                                    {
-                                                        <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> |   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span> </td>
+                                                                            if (Session["usertype"].ToString() == "agent")
+                                                                            {
+                                                                                <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> @*|   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span>*@ </td>
 
-                                                    }
-                                                    else if (Session["usertype"].ToString() == "sales")
-                                                    {
-                                                        if (@item.assignTo == Session["employeeId"].ToString() | @item.assignTo == "")
-                                                        {
-                                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> |   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span> </td>
+                                                                            }
+                                                                            else if (Session["usertype"].ToString() == "sales")
+                                                                            {
+                                                                                if (@item.assignTo == Session["employeeId"].ToString() | @item.assignTo == "")
+                                                                                {
+                                                                                    <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket leadGenerate" aria-hidden="true"></i></a> | <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><i class="fas fa-eye"></i></a> @*|   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span>*@ </td>
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <td> <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a> </td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td> <a href="/admin/viewLeadsheetstatusById?leadId=@(item.id)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a> </td>
 
-                                                        }
-                                                    }
+                                                                                }
+                                                                            }
 
 
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if (Session["usertype"].ToString() == "admin")
-                                                {
-                                                    <td>
-                                                        <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_lead?id=@(item.id)"> <img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> |   <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    if (@item.assignTo != Session["employeeId"].ToString())
-                                                    {
-                                                        <td>
-                                                            <span style="color:black" class="disabled">Generated </span> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-                                                        </td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>
-                                                            <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
-                                                        </td>
-                                                    }
-                                                }
-                                            }
-                                        </tr>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (Session["usertype"].ToString() == "admin")
+                                                                        {
+                                                                            <td>
+                                                                                <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/delet_lead?id=@(item.id)"> <img src="~/Contents/images/Delete.png" style="width:15px; height:15px" /></a> |   <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
+                                                                            </td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (@item.assignTo != Session["employeeId"].ToString())
+                                                                            {
+                                                                                <td>
+                                                                                    <span style="color:black" class="disabled">Generated </span> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                                                                </td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td>
+                                                                                    <span style="color:black" class="disabled">Generated </span> |  <a href="/admin/lead_management?id=@(item.id)"><img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a> | <a href="/admin/viewleaddeatailById?leadId=@(item.id)" class="btn btn-sm showdetail"><i class="fas fa-eye"></i></a>
+                                                                                </td>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </tr>
                                         i++;
                                     }
                                 }

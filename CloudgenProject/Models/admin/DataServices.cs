@@ -16,13 +16,15 @@ namespace CloudgenProject.Models.admin
 
 
         #region manage dashboard
-        public manage_dashboard total_count()
+        public manage_dashboard total_count_admin(string loginType)
         {
             manage_dashboard cg = new manage_dashboard();
             con.Open();
             SqlCommand cmd = new SqlCommand("sp_manageDashboard", con);
+            
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+            cmd.Parameters.AddWithValue("@Action", loginType);
+          
             SqlDataReader dr = cmd.ExecuteReader();
             // int count = 0;
             if (dr.HasRows)
@@ -39,6 +41,61 @@ namespace CloudgenProject.Models.admin
             }
             return cg;
         }
+
+        public manage_dashboard total_count_sales(string loginType, string loginid)
+        {
+            manage_dashboard cg = new manage_dashboard();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_manageDashboard", con);
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", loginType);
+            cmd.Parameters.AddWithValue("@loginid", loginid);
+            SqlDataReader dr = cmd.ExecuteReader();
+            // int count = 0;
+            if (dr.HasRows)
+            {
+                dr.Read();
+             //   cg.total_employee = Convert.ToInt32(dr["total_employee"]);
+             //   cg.total_branch = Convert.ToInt32(dr["total_branch"]);
+             //   cg.total_po = Convert.ToInt32(dr["total_po"]);
+             //   cg.total_product = Convert.ToInt32(dr["total_product"]);
+                cg.total_lead = Convert.ToInt32(dr["total_lead"]);
+                cg.TotalTodayFollowUp = Convert.ToInt32(dr["TotalTodayFollowUp"]);
+             //   cg.total_pi = Convert.ToInt32(dr["total_pi"]);
+             //   cg.total_sales_book = Convert.ToInt32(dr["total_sales_book"]);
+             //   cg.total_vendor = Convert.ToInt32(dr["total_vendor"]);
+            }
+            return cg;
+        }
+        public manage_dashboard total_count_agent(string loginType, string loginid)
+        {
+            manage_dashboard cg = new manage_dashboard();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_manageDashboard", con);
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", loginType);
+            cmd.Parameters.AddWithValue("@loginid", loginid);
+            SqlDataReader dr = cmd.ExecuteReader();
+            // int count = 0;
+            if (dr.HasRows)
+            {
+                dr.Read();
+               // cg.total_employee = Convert.ToInt32(dr["total_employee"]);
+              //  cg.total_branch = Convert.ToInt32(dr["total_branch"]);
+               // cg.total_po = Convert.ToInt32(dr["total_po"]);
+              //  cg.total_product = Convert.ToInt32(dr["total_product"]);
+               cg.total_lead = Convert.ToInt32(dr["total_lead"]);
+             //  cg.TotalFollowUp = Convert.ToInt32(dr["TotalFollowUp"]);
+               cg.TotalTodayFollowUp = Convert.ToInt32(dr["TotalTodayFollowUp"]);
+              //  cg.total_pi = Convert.ToInt32(dr["total_pi"]);
+               // cg.total_sales_book = Convert.ToInt32(dr["total_sales_book"]);
+              //  cg.total_vendor = Convert.ToInt32(dr["total_vendor"]);
+            }
+            return cg;
+        }
+
         #endregion
 
         #region manage subadmin
@@ -1415,6 +1472,8 @@ namespace CloudgenProject.Models.admin
                     lead.generateStatus = sdr["generateStatus"].ToString();
                     lead.assignBy = sdr["assignBy"].ToString();
                     lead.assignTo = sdr["assignTo"].ToString();
+                    //lead.assignBy = sdr["assignedByName"].ToString();
+                    //lead.assignTo = sdr["assignedToName"].ToString();
                     lead.assignStatus = sdr["assignStatus"].ToString();
                     leadsheet.Add(lead);
                 }
@@ -2184,6 +2243,7 @@ namespace CloudgenProject.Models.admin
                 cmd.Parameters.AddWithValue("@LeadId", respObj.LeadId);
                 cmd.Parameters.AddWithValue("@status", respObj.status);
                 cmd.Parameters.AddWithValue("@response", respObj.response);
+                cmd.Parameters.AddWithValue("@leadtype", respObj.leadType);
                 cmd.Parameters.AddWithValue("@currentDate", respObj.current_date);
                 cmd.Parameters.AddWithValue("@next_follow_up_date", respObj.nextfollow_up_date);
 
@@ -2230,6 +2290,7 @@ namespace CloudgenProject.Models.admin
                     lead.LeadId = sdr["LeadId"].ToString();
                     lead.status = sdr["status"].ToString();
                     lead.response = sdr["response"].ToString();
+                    lead.leadType = sdr["leadtype"].ToString();
                     lead.current_date = sdr["currentDate"].ToString();
                     lead.nextfollow_up_date = sdr["next_follow_up_date"].ToString();
                     leadresponse.Add(lead);
@@ -2263,7 +2324,52 @@ namespace CloudgenProject.Models.admin
                     lead.LeadId = sdr["LeadId"].ToString();
                     lead.status = sdr["status"].ToString();
                     lead.response = sdr["response"].ToString();
+                    lead.leadType = sdr["leadtype"].ToString();
                     lead.current_date = sdr["currentDate"].ToString();
+                    lead.nextfollow_up_date = sdr["next_follow_up_date"].ToString();
+                    leadresponse.Add(lead);
+                }
+
+            }
+            con.Close();
+            return leadresponse;
+        }
+
+
+
+        // today follow up list
+        public List<todayfollowupmodel> todayfollowuplist(string AgentId, DateTime todayfollowUp)
+        {
+            List<todayfollowupmodel> leadresponse = new List<todayfollowupmodel>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_leadresponse", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@AgentId", AgentId);
+            cmd.Parameters.AddWithValue("@todayfollowUpDate", todayfollowUp);
+            cmd.Parameters.AddWithValue("@Action", "todayfollowuplist");
+            SqlDataReader sdr = cmd.ExecuteReader();
+            todayfollowupmodel lead = new todayfollowupmodel();
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    lead = new todayfollowupmodel();
+                    lead.id = sdr["id"].ToString();
+                    lead.leadId = sdr["leadId"].ToString();
+                    lead.AgentId = sdr["AgentId"].ToString();
+                    lead.status = sdr["status"].ToString();
+                    lead.response = sdr["response"].ToString();
+                    lead.Client = sdr["client_name"].ToString();
+                    lead.leadType = sdr["leadType"].ToString();
+                    lead.contactemail = sdr["eMAIL_ID"].ToString();
+                    lead.contac_no = sdr["contact_no"].ToString();
+                    lead.ContactPerson = sdr["contactperson"].ToString();
+                    lead.address = sdr["address"].ToString();
+                    lead.product = sdr["productname"].ToString();
+                    lead.assignToName = sdr["assignToName"].ToString();
+                    lead.assignByName = sdr["assignByName"].ToString();
+                    lead.product = sdr["productname"].ToString();
+                 //   lead.current_date = sdr["currentDate"].ToString();
                     lead.nextfollow_up_date = sdr["next_follow_up_date"].ToString();
                     leadresponse.Add(lead);
                 }

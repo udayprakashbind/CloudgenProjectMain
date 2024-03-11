@@ -4,7 +4,7 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Contents/css/model.css" rel="stylesheet" />
 <style>
     .custom-card {
         border: none;
@@ -47,39 +47,6 @@
         background: linear-gradient(to right, #fffff, #fffff);
     }
 
-    /*.custom-gradient-2 {
-            background: linear-gradient(to right, #256ec3, #a0c5f5);
-        }*/
-
-    .custom-gradient-2 {
-        background: linear-gradient(to right, #256ec3, #a0c5f5);
-    }
-
-    .custom-gradient-3 {
-        background: linear-gradient(to right,#ff5e5e, #efb7b7); /* Blue to light blue gradient */
-    }
-
-    .custom-gradient-4 {
-        background: linear-gradient(to right, #182ca7, #b8b6ef);
-    }
-
-    .custom-gradient-5 {
-        /* background: linear-gradient(to right, #2e150f, #583a32);*/ /* Orange to yellow gradient */
-        background: linear-gradient(to right, #7a3b2b, #583a32);
-    }
-
-    .custom-gradient-6 {
-        background: linear-gradient(to right, #857105, #e1d17b); /* Magenta to gold gradient */
-    }
-
-    .custom-gradient-7 {
-        background: linear-gradient(to right, #76003b, #e56aa7); /* Purple to pink gradient */
-    }
-
-    .custom-gradient-8 {
-        background: linear-gradient(to right, #0f4881, #0cf3f3); /* Sky blue to cyan gradient */
-    }
-
     .custom-card .fa {
         font-size: 52px;
         /*        margin-top: 10px;
@@ -96,7 +63,117 @@
     .icon-color {
         color: blue; /* Change this to the color you desire */
     }
+
+    .custom-gradient-1 {
+        /*background: linear-gradient(to right, #21acb1, #c5f0f7);*/
+        background-color: white;
+    }
+
+    .response-heading,
+    .date-heading,
+    .status-heading {
+        background-color: #007bff; /* Blue background */
+        color: #fff; /* White text color */
+        padding: 10px; /* Adjust padding as needed */
+        font-weight: bold; /* Bold font */
+        text-align: center; /* Center text */
+        border: none; /* Remove border */
+    }
+
+    .response-heading {
+        width: 25%; /* Adjust width for each column */
+    }
+
+    .date-heading {
+        width: 25%; /* Adjust width for each column */
+    }
+
+    .status-heading {
+        width: 25%; /* Adjust width for each column */
+    }
+
+    /* #responsetable1 {
+        width: 100%;
+        border-collapse: collapse;
+    }*/
+
+    #responsetable1 th,
+    #responsetable1 td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    #responsetable1 thead th {
+        background-color: #a7c6ed;
+        border-bottom: 1px solid #09794f;
+    }
+
+    #responsetable1 tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #responsetable1 tbody tr:hover {
+        background-color: #ddd;
+    }
+
+    #responsetable1 tbody td:last-child {
+        text-transform: capitalize; /* Capitalize the status text */
+    }
+    /*.custom-gradient-2 {
+               background: linear-gradient(to right, #256ec3, #a0c5f5);
+           }*/
+
+    /*.custom-gradient-2 {
+           background: linear-gradient(to right, #256ec3, #a0c5f5);
+       }
+
+       .custom-gradient-3 {
+           background: linear-gradient(to right,#ff5e5e, #efb7b7);*/ /* Blue to light blue gradient */
+    /*}
+
+       .custom-gradient-4 {
+           background: linear-gradient(to right, #182ca7, #b8b6ef);
+       }
+
+       .custom-gradient-5 {*/
+    /* background: linear-gradient(to right, #2e150f, #583a32);*/ /* Orange to yellow gradient */
+    /*background: linear-gradient(to right, #7a3b2b, #583a32);
+       }
+
+       .custom-gradient-6 {
+           background: linear-gradient(to right, #857105, #e1d17b);*/ /* Magenta to gold gradient */
+    /*}
+
+       .custom-gradient-7 {
+           background: linear-gradient(to right, #76003b, #e56aa7);*/ /* Purple to pink gradient */
+    /*}
+
+       .custom-gradient-8 {
+           background: linear-gradient(to right, #0f4881, #0cf3f3);*/ /* Sky blue to cyan gradient */
+    /*}*/
+
+
+
+    /*#graph-container,
+       #calendar-container {
+           margin-top: 20px;*/ /* Adjust as needed */
+    /*padding: 10px;*/ /* Adjust as needed */
+    /*background-color: #f8f9fa;*/ /* Light gray background color */
+    /*border-radius: 10px;
+           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+       }*/
+
+    /* Styling for the graph */
+    /*#graph-container {
+           height: 300px;*/ /* Adjust as needed */
+    /*}*/
+
+    /* Styling for the calendar */
+    /*#calendar-container {
+           height: 300px;*/ /* Adjust as needed */
+    /*}*/
 </style>
+
 
 <div class="container-fluid mt-3">
     <div class="row">
@@ -106,7 +183,7 @@
                     <div class="card-body">
                         <h3 class="card-title">Lead List </h3>
                         <div class="d-inline-block">
-                            <h2>@*@Model.total_lead*@</h2>
+                            <h2>@Model.total_lead</h2>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-address-book" style="color: #ff5e5e"></i></span>
                     </div>
@@ -115,12 +192,12 @@
         </div>
 
         <div class="col-lg-4 col-sm-6">
-            <a href="/admin/view_assignedlead" class="custom-card-link">
+            <a href="/admin/Todayfollowuplist" class="custom-card-link">
                 <div class="card custom-card custom-gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title">Follow Up</h3>
+                        <h3 class="card-title">Today Follow Up</h3>
                         <div class="d-inline-block">
-                            <h2></h2>
+                            <h2>@Model.TotalTodayFollowUp</h2>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-bell" style="color: #857105"></i></span>
                     </div>
@@ -133,7 +210,9 @@
                     <div class="card-body">
                         <h3 class="card-title">Add Lead </h3>
                         <div class="d-inline-block">
-                            <h2>-->@*@Model.total_pi*@<!--</h2>
+                            <h2>-->
+        @*@Model.total_pi*@
+        <!--</h2>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-bar-chart" style="color: #76003b"></i></span>
                     </div>
@@ -245,6 +324,287 @@
     <!-- right col -->
     <!--</div>-->
 
+    <div class="row" style="background-color:white">
+        <div class="col-12">
+            @*<div class="card">
+                <div class="card-body" style="padding-top:0px" ;>*@
+            <div class="form-group row justify-content-md-center" style="background-color: rgba(144, 104, 190,0.7);">
+                <h3 class="adv-title" style="color: #fff ;padding: 2px 0 2px 0;">Lead List</h3>
+            </div>
+            <table>
+                <tr>
+                    <td style="width: 10px; height: 10px;"><i class="fa fa-square" style="color: #E3e2ab;"></i></td>
+                    <td style="width: 10px; height: 10px;"></td>
+                    <td>Agent</td>
+
+                    @*<td style="width: 10px; height: 10px;"></td>
+                        <td style="width: 10px; height: 10px;"><i class="fa fa-square" style="color: #Abe3c8;"></i></td>
+                        <td style="width: 10px; height: 10px;"></td>
+                        <td>Sales</td>*@
+
+                    @*<td style="width: 10px; height: 10px;"></td>
+                        <td style="width: 10px; height: 10px;"><i class="fa fa-square" style="color: aliceblue;"></i></td>
+                        <td style="width: 10px; height: 10px;"></td>
+                        <td>Admin</td>*@
+                    <td></td>
+                </tr>
+
+            </table>
+            <div class="table-responsive">
+                <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Client Name</th>
+                            <th>Contact Person</th>
+                            <th>Contact No</th>
+                            <th hidden>Email</th>
+                            <th>Product Info</th>
+                            <th>Cureent Response</th>
+                            <th>Assigned By</th>
+                            <th>Assigned To</th>
+                            <th>Next follow UP Date</th>
+                            <th>Status</th>
+                            <th hidden></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:black; ">
+                        @{
+                            int i = 1;
+
+                            foreach (var item in ViewBag.list as List<CloudgenProject.Models.admin.leadstatusmodel>)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.client</td>
+                                    <td>@item.ContactPerson</td>
+                                    <td>@item.contac_no</td>
+                                    <td hidden>@item.contactemail</td>
+                                    <td>@item.product</td>
+                                    <td>@item.response</td>
+                                    <td>@item.assignby</td>
+                                    <td>@item.assignTo</td>
+                                    <td>@item.next_follow_up_date</td>
+                                    @if (@item.status != "1")
+                                    {
+
+                                        // leadstatus complete or inProgress
+                                        <td>Inprogress</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>Completed</td>
+                                    }
+
+
+                                    <td hidden>@item.assignstatus</td>
+
+                                    <td>
+                                        <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||
+                                        <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                    </td>
+
+                                    @*@if (@item.generateStatus == "0")
+                                        {
+                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span style="color:black" class="disabled">Generated </span> </td>
+
+                                        }*@
+                                </tr>
+                                i++;
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @*</div>
+                </div>*@
+        </div>
+    </div>
+
+
+
 </div>
 
 
+<div class="modal" id="responseModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Follow up Details/History</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table id="responsetable1" class="table table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Response</th>
+                            <th>Current Date</th>
+                            <th>Next Follow UP Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="showleaddetailsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">lead Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="detailstable" class="table">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function initializeDataTable() {
+        $('#example1').DataTable({
+            "fnRowCallback": function (nRow, aData) {
+                if (aData[11] == "1") {
+                    $('td', nRow).css('background-color', 'aliceblue');
+                } else if (aData[11] == "2") {
+                    $('td', nRow).css('background-color', '#CFEDDF');
+                } else if (aData[11] == "3") {
+                    $('td', nRow).css('background-color', '#F3F3D2');
+                }
+            }
+        });
+    }
+
+    // Function to destroy DataTable instance
+    function destroyDataTable() {
+        if ($.fn.DataTable.isDataTable('#example1')) {
+            $('#example1').DataTable().destroy();
+        }
+    }
+
+    //$('#viewresponsesection').hide();
+
+    $(document).ready(function () {
+
+        initializeDataTable();
+
+        function openResponseModal(data) {
+            $('#responseModal').modal('show');
+
+            var tableHTML = '';
+            $.each(data, function (index, item) {
+                tableHTML += '<tr>';
+                tableHTML += '<td>' + item.response + '</td>';
+                tableHTML += '<td>' + item.current_date + '</td>';
+                tableHTML += '<td>' + item.nextfollow_up_date + '</td>';
+                tableHTML += '<td>' + (item.status == '0' ? 'InProgress' : 'Complete') + '</td>';
+                tableHTML += '</tr>';
+            });
+
+            $('#responsetable1 tbody').html(tableHTML);
+        }
+
+        // Event handler to open modal and load data when a link with class "showLeadFollowUpdetail" is clicked
+        $('#example1').on('click', '.showLeadFollowUpdetail', function (ev) {
+            ev.preventDefault();
+
+            var currentRow = $(this).closest("tr");
+            var url = $(this).attr("href");
+
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    openResponseModal(data);
+                },
+                error: function (error) {
+                    console.error('Error occurred', error);
+                }
+            });
+        });
+
+
+        $('#example1').on('click', '.showLeaddetail', function (ev) {
+            ev.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    console.log(data);
+
+                    var tableHTML = '';
+
+                    $.each(data, function (index, item) {
+                        // alert(index);
+                        if (index != 'id' && index != 'employee_first_name' && index != 'LeadID' && index != 'countrylist' && index != 'employe_list' && index != 'LeadStatus' && index != 'assignStatus') {
+                            tableHTML += '<tr>';
+                            tableHTML += '<th>' + index.replace(/#|_/g, ' ') + ': </th>';
+                            tableHTML += '<td>' + item + '</td>';
+                            tableHTML += '</tr>';
+                        }
+                    });
+
+                    $('#detailstable').html(tableHTML);
+
+                    $('#showleaddetailsModal').modal('show');
+
+                },
+                error: function (error) {
+                    // Code to handle the error
+                    console.error('Error occurred', error);
+                }
+            });
+
+            // alert(action);
+        });
+
+        $(".showLeaddetail").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Lead Details ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+        $(".showLeadFollowUpdetail").hover(function () {
+            $(this).css('cursor', 'pointer').attr('title', 'Follow up History ');
+        }, function () {
+            $(this).css('cursor', 'auto');
+        });
+
+        $('#someButton').on('click', function () {
+            // Destroy DataTable
+            destroyDataTable();
+
+            // Perform other actions
+
+            // Re-initialize DataTable
+            initializeDataTable();
+        });
+    });
+</script>
