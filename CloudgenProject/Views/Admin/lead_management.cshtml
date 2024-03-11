@@ -104,12 +104,12 @@
                                                 <input type="text" class="form-control" id="Telephone" name="Telephone" placeholder="Enter Client Mobile No." value="@Model.Telephone" required>
                                             </div>
                                         </div>*@
-                                    <div class="col-sm-4">
+                                    @*<div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="">Client Segment:-</label>
                                             <input type="text" class="form-control" id="ClientSegment" name="ClientSegment" placeholder="Enter Client Segment" value="@Model.ClientSegment" required>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
 
                                 <div class="row">
@@ -352,7 +352,7 @@
                                         </div>
                                     </div>-->
                                     <input type="hidden" class="form-control" id="LeadGeneratedBy" name="LeadGeneratedBy" value="@Model.LeadGeneratedBy" readonly>
-                                    <input type="text" class="form-control" id="LeadGeneratedByType" name="LeadGeneratedByType" value="@Model.LeadGeneratedByType" readonly>
+                                    <input type="hidden" class="form-control" id="LeadGeneratedByType" name="LeadGeneratedByType" value="@Model.LeadGeneratedByType" readonly>
                                     <input type="hidden" class="form-control" id="LeadAssignedTo" name="LeadAssignedTo" value="@Model.LeadAssignedTo">
                                     <input type="hidden" class="form-control" id="assignStatus" name="assignStatus" value="@Model.assignStatus">
 

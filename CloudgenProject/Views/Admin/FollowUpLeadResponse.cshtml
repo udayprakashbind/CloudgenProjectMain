@@ -175,6 +175,7 @@
                             <table id="example1" class="table table-striped table-bordered zero-configuration tb-list" width="100%" border="1" style="font-size: 12px; text-align: center">
                                 <thead>
                                     <tr>
+                                        <th>Sr.No</th>
                                         <th>Response</th>
                                         <th>Current Date</th>
                                         <th>LeadType</th>
@@ -184,9 +185,11 @@
                                 </thead>
                                 <tbody style="color:black; ">
                                     @{
+                                        int i=1;
                                         foreach (var item in Model)
                                         {
                                             <tr>
+                                                <td>@i</td>
                                                 <td>@item.response</td>
                                                 <td>@item.current_date</td>
                                                 <td>@item.leadType</td>
@@ -200,6 +203,7 @@
                                                     <td>complete</td>
                                                 }
                                             </tr>
+                                            i++;
                                         }
                                     }
                                 </tbody>
@@ -310,9 +314,10 @@
                     // Re-populate DataTable with updated data
                     
                     $.each(data, function (index, item) {
+                        index = index + 1;
                         var statusText = item.status == '0' ? 'InProgress' : 'Complete';
-                        $('#example1 tbody').append('<tr><td>' + item.response + '</td><td>' + item.current_date + '</td><td>' +item.leadType+ '</td><td>' + item.nextfollow_up_date + '</td><td>' + statusText + '</td></tr>');
-                        i++;
+                        $('#example1 tbody').append('<tr><td>' + index + '</td><td>' + item.response + '</td><td>' + item.current_date + '</td><td>' +item.leadType+ '</td><td>' + item.nextfollow_up_date + '</td><td>' + statusText + '</td></tr>');
+                      
                     });
 
                     // Re-initialize DataTable
