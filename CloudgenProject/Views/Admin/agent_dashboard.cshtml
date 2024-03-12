@@ -385,31 +385,19 @@
                                                     <td>@item.response</td>
                                                     <td>@item.assignby</td>
                                                     <td>@item.assignTo</td>
-                                                    <td>@item.next_follow_up_date</td>
-                                                    @if (item.generateStatus == "0")
-                                                    {
-                                                        <td> Pending </td>
-
-                                                    }
-                                                    else
-                                                    {
-
-
-                                                        if (item.status == "1")
+                                                    <td>@item.next_follow_up_date</td>                                                
+                                                        @if (item.status! = "1")
                                                         {
 
                                                             // leadstatus complete or inProgress
-                                                            <td> Completed </td>
-
+                                                       <td> Inprogress </td>
 
                                                         }
                                                         else
                                                         {
-                                                            <td> Inprogress </td>
+                                                          <td> Completed </td
 
                                                         }
-
-                                                    }
                                                     <td hidden>@item.assignstatus</td>
 
                                                     <td>
