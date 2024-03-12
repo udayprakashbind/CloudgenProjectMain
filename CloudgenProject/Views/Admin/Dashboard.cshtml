@@ -291,14 +291,6 @@
                                                     <td>@item.assignby</td>
                                                     <td>@item.assignTo</td>
                                                     <td>@item.next_follow_up_date</td>
-                                                    @if (item.generateStatus == "0")
-                                                    {
-                                                        <td> Pending </td>
-
-                                                    }
-                                                    else
-                                                    {
-
 
                                                         if (item.status == "1")
                                                         {
@@ -313,9 +305,6 @@
                                                             <td> Inprogress </td>
 
                                                         }
-
-                                                    }
-
                                                     <td hidden>@item.assignstatus</td>
 
                                                     <td>
