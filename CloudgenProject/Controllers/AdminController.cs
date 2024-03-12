@@ -2634,18 +2634,26 @@ namespace CloudgenProject.Controllers
 
         public ActionResult add_quotation(string LeadId, string id)
         {
-
-
             ViewBag.LeadId = LeadId;
 
             manage_quotation quot = new manage_quotation();
 
             lead_mangement leadForQuot = new lead_mangement();
 
-            //  var leadforQuotes=;
-
             if (LeadId != "" && LeadId != null)
             {
+                // Check if the lead ID already exists in the quotation table
+                string leadExistsInQuotation = db.LeadExistsInQuotation(LeadId);
+
+                if (leadExistsInQuotation == null || leadExistsInQuotation == "")
+                {
+                    // Generate a new quotation ID
+                    quot.Quotation_No = GenerateQuotationID();
+                }
+                else
+                {
+                    quot.Quotation_No = leadExistsInQuotation;
+                }
                 leadForQuot = db.getassingedLeadByLeadId(LeadId);
 
                 quot.Contact_Person_No = leadForQuot.ContactMobileNumber;
@@ -2654,16 +2662,32 @@ namespace CloudgenProject.Controllers
                 quot.Lead_Reference = leadForQuot.LeadID;
                 quot.Address = leadForQuot.Address;
                 quot.Date = leadForQuot.LeadGenerationDate;
-
+             //   quot.Quotation_No = leadForQuot.Quotation_No;
             }
 
-            if (id != null && id != "")
+            else if (id != null && id != "")
             {
+                // Retrieve the existing quotation if id is provided
                 quot = db.getQuotationbyId(id);
             }
 
-
             return View(quot);
+        }
+
+        // Method to generate a new quotation ID
+        private string GenerateQuotationID()
+        {
+            // Generate a random number
+            Random random = new Random();
+            int randomNumber = random.Next(1000, 9999); // Adjust range as needed
+
+            // Generate a timestamp
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            // Concatenate prefix, timestamp, and random number
+            string quotationNumber = "QU" + timestamp + randomNumber.ToString();
+
+            return quotationNumber;
         }
 
 

@@ -1169,6 +1169,32 @@ namespace CloudgenProject.Models.admin
         #endregion
 
         #region manage Quotation
+
+        public string LeadExistsInQuotation(string LeadId)
+        {
+            string Quotation_No = "";
+            string query = "SELECT TOP 1 * FROM Quotation WHERE Lead_Reference = @LeadId";
+           // bool leadExists = false;
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@LeadId", LeadId);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+                Quotation_No = row["Quotation_No"].ToString();
+                // Assign other properties of quot if needed
+              //  leadExists = true;
+            }
+
+            return Quotation_No;
+        }
+
         public bool insert_Quotation(CloudgenProject.Models.admin.manage_quotation quotation)
         {
             //done
@@ -1249,6 +1275,7 @@ namespace CloudgenProject.Models.admin
                 {
                     quot = new manage_quotation();
                     quot.id = sdr["Id"].ToString();
+                    quot.Version_No = sdr["Version_No"].ToString();
                     quot.Quotation_No = sdr["Quotation_No"].ToString();
                     quot.Lead_Reference = sdr["Lead_Reference"].ToString();
                     quot.Client_Name = sdr["Client_Name"].ToString();
@@ -1300,6 +1327,7 @@ namespace CloudgenProject.Models.admin
                 {
                     quot = new manage_quotation();
                     quot.id = sdr["Id"].ToString();
+                    quot.Version_No = sdr["Version_No"].ToString();
                     quot.Quotation_No = sdr["Quotation_No"].ToString();
                     quot.Lead_Reference = sdr["Lead_Reference"].ToString();
                     quot.Client_Name = sdr["Client_Name"].ToString();
@@ -1347,6 +1375,7 @@ namespace CloudgenProject.Models.admin
             {
                 sdr.Read();
                 quot.id = sdr["Id"].ToString();
+                quot.Version_No = sdr["Version_No"].ToString();
                 quot.Quotation_No = sdr["Quotation_No"].ToString();
                 quot.Lead_Reference = sdr["Lead_Reference"].ToString();
                 quot.Client_Name = sdr["Client_Name"].ToString();
@@ -1990,7 +2019,9 @@ namespace CloudgenProject.Models.admin
         public lead_mangement getassingedLeadByLeadId(string id)
         {
             lead_mangement obj = new lead_mangement();
-            con.Open();
+            if(con.State == ConnectionState.Closed)
+            { con.Open(); }
+           
             SqlCommand cmd = new SqlCommand("sp_LeadSheet", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Action", "getassindeleadByLeadId");

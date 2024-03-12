@@ -260,13 +260,16 @@
     <Content Include="Contents\images\Delete.png" />
     <Content Include="Contents\images\download.png" />
     <Content Include="Contents\images\edit-icon.png" />
+    <Content Include="Contents\images\file.png" />
     <Content Include="Contents\images\iconfinder_Cancel_27836.png" />
     <Content Include="Contents\images\loader.gif" />
     <Content Include="Contents\images\macreel_logo.png" />
     <Content Include="Contents\images\PDF.png" />
-    <Content Include="Contents\images\quotation_send.jpg" />
+    <Content Include="Contents\images\quotation_send.png" />
+    <Content Include="Contents\images\quotation_send1.jpg" />
     <Content Include="Contents\images\userlogo.png" />
     <Content Include="Contents\images\view.jpg" />
+    <Content Include="Contents\images\view.png" />
     <Content Include="Contents\js\custom.min.js" />
     <Content Include="Contents\js\dashboard\dashboard-1.js" />
     <Content Include="Contents\js\gleek.js" />

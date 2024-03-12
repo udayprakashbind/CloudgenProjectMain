@@ -8,6 +8,8 @@ namespace CloudgenProject.Models.admin
     public class manage_quotation
     {
         public string id { get; set; }
+
+        public string Version_No { get; set; }
         public string Quotation_No { get; set; }
         public string Lead_Reference { get; set; }
         public string Client_Name { get; set; }
