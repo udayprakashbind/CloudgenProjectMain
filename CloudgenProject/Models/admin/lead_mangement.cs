@@ -72,7 +72,11 @@ namespace CloudgenProject.Models.admin
         public string ContactPerson { get; set; }
         public string client { get; set; }
         public string contactemail { get; set; }
-       
+        public string LeadStatus { get; set; }
+        public string assignToId {  get; set; }
+        public string generatestatus { get; set; }
+
+
     }
 
 }

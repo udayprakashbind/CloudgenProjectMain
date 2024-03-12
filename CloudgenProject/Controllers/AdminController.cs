@@ -55,8 +55,11 @@ namespace CloudgenProject.Controllers
                         contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
                         product = sdr["productname"].ToString(),
                         assignTo = sdr["assignedToName"].ToString(),
+                        assignToId = sdr["assignTo"].ToString(),
                         assignby = sdr["assignedByName"].ToString(),
                         assignstatus = sdr["assignstatus"].ToString(),
+                        LeadStatus = sdr["leadstatus"].ToString(),
+                        generatestatus = sdr["generateStatus"].ToString(),
                     });
                 }
             }
@@ -68,6 +71,44 @@ namespace CloudgenProject.Controllers
             var hh = db.total_count_admin(logintype);
             return View(hh);
         }
+
+        public JsonResult FollowUpByDate(string date)
+        {
+            List<CloudgenProject.Models.admin.leadstatusmodel> leaddetails = new List<CloudgenProject.Models.admin.leadstatusmodel>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_leadresponse", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", "followuplistbyDateForadmin");
+            cmd.Parameters.AddWithValue("@next_follow_up_date", date);
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
+                    {
+                        leadId = sdr["LeadId"].ToString(),
+                        response = sdr["response"].ToString(),
+                        status = sdr["status"].ToString(),
+                        next_follow_up_date = sdr["next_follow_up_date"].ToString(),
+                        client = sdr["client_name"].ToString(),
+                        ContactPerson = sdr["ContactPerson"].ToString(),
+                        contac_no = sdr["contact_no"].ToString(), // corrected variable name
+                        contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
+                        product = sdr["productname"].ToString(),
+                        assignTo = sdr["assignedToName"].ToString(),
+                        assignby = sdr["assignedByName"].ToString(),
+                        assignstatus = sdr["assignstatus"].ToString(),
+                    });
+                }
+            }
+
+
+            return Json(leaddetails, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public ActionResult sale_dashboard()
         {
@@ -104,8 +145,11 @@ namespace CloudgenProject.Controllers
                         contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
                         product = sdr["productname"].ToString(),
                         assignTo = sdr["assignedToName"].ToString(),
+                        assignToId = sdr["assignTo"].ToString(),
                         assignby = sdr["assignedByName"].ToString(),
                         assignstatus = sdr["assignstatus"].ToString(),
+                        LeadStatus = sdr["leadstatus"].ToString(),
+                        generatestatus = sdr["generateStatus"].ToString(),
                     });
                 }
             }
@@ -117,6 +161,46 @@ namespace CloudgenProject.Controllers
             var hh = db.total_count_sales(logintype, loginId);
             return View(hh);
         }
+
+        public JsonResult SalesFollowUpByDate(string date)
+        {
+            var loginId = Session["employeeId"].ToString();
+            List<CloudgenProject.Models.admin.leadstatusmodel> leaddetails = new List<CloudgenProject.Models.admin.leadstatusmodel>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_leadresponse", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", "followuplistbyDateForsales");
+            cmd.Parameters.AddWithValue("@next_follow_up_date", date);
+            cmd.Parameters.AddWithValue("@assignedTo", loginId);
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
+                    {
+                        leadId = sdr["id"].ToString(),
+                        response = sdr["response"].ToString(),
+                        status = sdr["status"].ToString(),
+                        next_follow_up_date = sdr["next_follow_up_date"].ToString(),
+                        client = sdr["client_name"].ToString(),
+                        ContactPerson = sdr["ContactPerson"].ToString(),
+                        contac_no = sdr["contact_no"].ToString(), // corrected variable name
+                        contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
+                        product = sdr["productname"].ToString(),
+                        assignTo = sdr["assignedToName"].ToString(),
+                        assignby = sdr["assignedByName"].ToString(),
+                        assignstatus = sdr["assignstatus"].ToString(),
+                    });
+                }
+            }
+
+
+            return Json(leaddetails, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public ActionResult agent_dashboard()
         {
@@ -156,8 +240,11 @@ namespace CloudgenProject.Controllers
                         contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
                         product = sdr["productname"].ToString(),
                         assignTo = sdr["assignedToName"].ToString(),
+                        assignToId = sdr["assignTo"].ToString(),
                         assignby = sdr["assignedByName"].ToString(),
                         assignstatus = sdr["assignstatus"].ToString(),
+                        LeadStatus = sdr["leadstatus"].ToString(),
+                        generatestatus = sdr["generateStatus"].ToString(),
                     });
                 }
             }
@@ -168,6 +255,49 @@ namespace CloudgenProject.Controllers
 
             var hh = db.total_count_agent(logintype, loginId);
             return View(hh);
+        }
+
+        public JsonResult AgentFollowUpByDate(string date)
+        {
+            var loginId = Session["employeeId"].ToString();
+            List<CloudgenProject.Models.admin.leadstatusmodel> leaddetails = new List<CloudgenProject.Models.admin.leadstatusmodel>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_leadresponse", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Action", "followuplistbyDateForagent");
+            cmd.Parameters.AddWithValue("@next_follow_up_date", date);
+            cmd.Parameters.AddWithValue("@assignedTo", loginId);
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
+                    {
+                        // leadId = sdr["LeadId"].ToString(),
+                        leadId = sdr["id"].ToString(),
+                        response = sdr["response"].ToString(),
+                        status = sdr["status"].ToString(),
+                        next_follow_up_date = sdr["next_follow_up_date"].ToString(),
+                        client = sdr["client_name"].ToString(),
+                        ContactPerson = sdr["ContactPerson"].ToString(),
+                        contac_no = sdr["contact_no"].ToString(), // corrected variable name
+                        contactemail = sdr["eMAIL_ID"].ToString(), // corrected variable name
+                        product = sdr["productname"].ToString(),
+                        assignTo = sdr["assignedToName"].ToString(),
+                        assignToId = sdr["assignTo"].ToString(),
+                        assignby = sdr["assignedByName"].ToString(),
+                        assignstatus = sdr["assignstatus"].ToString(),
+                        LeadStatus = sdr["leadstatus"].ToString(),
+                        generatestatus = sdr["generateStatus"].ToString(),
+                    });
+                }
+            }
+
+            ViewBag.list = leaddetails;
+            return Json(leaddetails, JsonRequestBehavior.AllowGet);
+
         }
         #endregion
 

@@ -9,7 +9,8 @@
     .custom-card {
         border: none;
         border-radius: 10px;
-        padding: 20px;
+        /* padding: 20px;*/
+        padding: 10px 5px 10px 5px;
         transition: all 0.3s ease;
         background-color: #f8f9fa; /* Light gray background color */
     }
@@ -92,33 +93,33 @@
         width: 25%; /* Adjust width for each column */
     }
 
-   /* #responsetable1 {
+    /* #responsetable1 {
         width: 100%;
         border-collapse: collapse;
     }*/
 
-        #responsetable1 th,
-        #responsetable1 td {
-            padding: 8px;
-            text-align: left;
-        }
+    #responsetable1 th,
+    #responsetable1 td {
+        padding: 8px;
+        text-align: left;
+    }
 
-        #responsetable1 thead th {
+    #responsetable1 thead th {
         background-color: #a7c6ed;
         border-bottom: 1px solid #09794f;
-        }
+    }
 
-        #responsetable1 tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    #responsetable1 tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-        #responsetable1 tbody tr:hover {
-            background-color: #ddd;
-        }
+    #responsetable1 tbody tr:hover {
+        background-color: #ddd;
+    }
 
-        #responsetable1 tbody td:last-child {
-            text-transform: capitalize; /* Capitalize the status text */
-        }
+    #responsetable1 tbody td:last-child {
+        text-transform: capitalize; /* Capitalize the status text */
+    }
     /*.custom-gradient-2 {
                background: linear-gradient(to right, #256ec3, #a0c5f5);
            }*/
@@ -173,6 +174,8 @@
            height: 300px;*/ /* Adjust as needed */
     /*}*/
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.9/datamaps.min.js"></script>
+
 
 <div class="container-fluid mt-3">
     <div class="row">
@@ -180,9 +183,9 @@
             <a href="/Admin/viewleadsheetlist" class="custom-card-link">
                 <div class="card custom-card custom-gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title">Lead List </h3>
+                        <h4 class="card-title">Lead List </h4>
                         <div class="d-inline-block">
-                            <h2>@Model.total_lead</h2>
+                            <h5>@Model.total_lead</h5>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-address-book" style="color: #ff5e5e"></i></span>
                     </div>
@@ -251,7 +254,21 @@
                     <td style="width: 10px; height: 10px;"><i class="fa fa-square" style="color: aliceblue;"></i></td>
                     <td style="width: 10px; height: 10px;"></td>
                     <td>Admin</td>
-                    <td></td>
+                    <td> </td>
+
+                    <td>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                    </td>
+                    <td>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;@*<input id="followUpDate" type="date" style="padding:0px 20px 0px 20px" />*@
+                        <input id="followUpDate" type="date" style="padding:0px 20px 0px 20px" onchange="filterTableByDate()" />
+                    </td>
                 </tr>
 
             </table>
@@ -291,39 +308,49 @@
                                     <td>@item.assignby</td>
                                     <td>@item.assignTo</td>
                                     <td>@item.next_follow_up_date</td>
-                                    @if (@item.status != "1")
+                                    @if (item.generatestatus == "0")
                                     {
-
-                                        // leadstatus complete or inProgress
-                                        <td>Inprogress</td>
-
+                                        <td>Pending</td>
                                     }
                                     else
                                     {
-                                        <td>Completed</td>
+                                        if (@item.status != "1")
+                                        {
+
+                                            // leadstatus complete or inProgress
+                                            <td>Inprogress</td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>Completed</td>
+                                        }
                                     }
 
 
                                     <td hidden>@item.assignstatus</td>
 
                                     <td>
-                                        <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||
-                                        <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-                                    </td>
-
-                                    @*@if (@item.generateStatus == "0")
+                                        @if (@item.generatestatus == "1")
                                         {
-                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
+                                            if (item.LeadStatus == "1")
+                                            {
+                                                <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a>
+                                                <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/admin/viewLeadsheetstatusById?leadId=@(item.leadId)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                            }
                                         }
                                         else
                                         {
-                                            <td><span style="color:black" class="disabled">Generated </span> </td>
-
-                                        }*@
+                                            <a href="/admin/viewLeadsheetstatusById?leadId=@(item.leadId)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
+                                        }
+                                    </td>
                                 </tr>
                                 i++;
                             }
-
                         }
                     </tbody>
                 </table>
@@ -376,6 +403,27 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <table id="detailstable" class="table">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="showleadsheetstatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">lead Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="leadsheetdeatails" class="table">
                 </table>
             </div>
             <div class="modal-footer">
@@ -450,6 +498,42 @@
             });
         });
 
+        $(' #example1 ').on('click', '.showleadsheetstaus', function (ev) {
+            ev.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    //  console.log(data);
+
+                    var tableHTML = '';
+
+                    $.each(data, function (index, item) {
+                        // alert(index);
+                        if (index != 'id' && index != 'generateStatus' && index != 'assignStatus' && index != 'fileupload1') {
+                            tableHTML += '<tr>';
+                            tableHTML += '<th>' + index.replace(/#|_/g, ' ') + ': </th>';
+                            tableHTML += '<td>' + item + '</td>';
+                            tableHTML += '</tr>';
+                        }
+                    });
+
+                    $('#leadsheetdeatails').html(tableHTML);
+
+                    $('#showleadsheetstatus').modal('show');
+
+                },
+                error: function (error) {
+                    // Code to handle the error
+                    console.error('Error occurred', error);
+                }
+            });
+
+            // alert(action);
+        });
+
 
         $('#example1').on('click', '.showLeaddetail', function (ev) {
             ev.preventDefault();
@@ -511,7 +595,88 @@
     });
 </script>
 
+<script>
+    function filterTableByDate() {
+        var selectedDate = document.getElementById("followUpDate").value;
+        var tableRows = document.querySelectorAll("#example1 tbody tr");
 
+        tableRows.forEach(function (row) {
+            var nextFollowUpDate = row.cells[9].innerText; // Assuming next_follow_up_date is in the 9th column
+            if (nextFollowUpDate === selectedDate) {
+                row.style.display = ""; // Show the row
+            } else {
+                row.style.display = "none"; // Hide the row
+            }
+        });
+    }
+</script>
+
+
+@*<script>
+        $(document).ready(function () {
+            // Function to apply row colors based on status
+            function applyRowColors() {
+                $('#example1 tbody tr').each(function () {
+                    var status = $(this).find('td:nth-child(12)').text();
+                    if (status === "1") {
+                        $(this).css('background-color', 'aliceblue');
+                    } else if (status === "2") {
+                        $(this).css('background-color', '#CFEDDF');
+                    } else if (status === "3") {
+                        $(this).css('background-color', '#F3F3D2');
+                    }
+                });
+            }
+
+            // Your existing code here...
+
+            $('#followUpDate').change(function () {
+                var selectedDate = $(this).val();
+
+                // Make AJAX call to fetch data for the selected date
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/FollowUpByDate',
+                    data: { date: selectedDate },
+                    success: function (data) {
+                        console.log('Data received:', data);
+                        // Generate table rows with new data
+                        var tableHTML = '';
+                        $.each(data, function (index, item) {
+                            tableHTML += '<tr>';
+                            tableHTML += '<td>' + (index + 1) + '</td>';
+                            tableHTML += '<td>' + item.client + '</td>';
+                            tableHTML += '<td>' + item.ContactPerson + '</td>';
+                            tableHTML += '<td>' + item.contac_no + '</td>';
+                            tableHTML += '<td hidden>' + item.contactemail + '</td>';
+                            tableHTML += '<td>' + item.product + '</td>';
+                            tableHTML += '<td>' + item.response + '</td>';
+                            tableHTML += '<td>' + item.assignby + '</td>';
+                            tableHTML += '<td>' + item.assignTo + '</td>';
+                            tableHTML += '<td>' + item.next_follow_up_date + '</td>';
+                            var status = (item.status != "1") ? 'Inprogress' : 'Completed';
+                            tableHTML += '<td>' + status + '</td>';
+                            tableHTML += '<td hidden>' + item.assignstatus + '</td>';
+                            tableHTML += '<td>';
+                            tableHTML += '<a href="/admin/viewresponsebyleadId?leadId=' + item.leadId + '" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||';
+                            tableHTML += '<a href="/admin/viewleaddeatailById?leadId=' + item.leadId + '" class="btn btn-sm showLeaddetail"  style="color:darkblue"><i class="fa fa-eye" style="font-size:16px"></i></a>';
+                            tableHTML += '</td>';
+                            tableHTML += '</tr>';
+                        });
+
+                        // Update the table body with new data
+                        $('#example1 tbody').html(tableHTML);
+                        applyRowColors();
+                        console.log('Table data updated successfully.');
+                    },
+                    error: function (error) {
+                        console.error('Error occurred', error);
+                    }
+                });
+
+            });
+        });
+    </script>*@
 
 
 
