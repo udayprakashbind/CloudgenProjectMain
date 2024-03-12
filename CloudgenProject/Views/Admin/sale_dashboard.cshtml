@@ -349,19 +349,17 @@
                                                     <td>@item.assignby</td>
                                                     <td>@item.assignTo</td>
                                                     <td>@item.next_follow_up_date</td>
-                                                   @if (item.status! = "1")
-                                                        {
+                                                    @if (@item.status != "1")
+                                                    {
 
-                                                            // leadstatus complete or inProgress
-                                                       <td> Inprogress </td>
-
-                                                        }
-                                                        else
-                                                        {
-                                                          <td> Completed </td>
+                                                    // leadstatus complete or inProgress
+                                                    <td>Inprogress</td>
 
                                                         }
-
+                                                    else
+                                                    {
+                                                        <td>Completed</td>
+                                                    }
                                                     <td hidden>@item.assignstatus</td>
 
                                                     <td>
