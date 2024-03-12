@@ -427,58 +427,20 @@
                                     <td hidden>@item.assignstatus</td>
 
                                     <td>
-                                        @if (@item.generatestatus == "1")
-                                        {
-                                            if (@item.assignToId == Session["employeeId"].ToString() | @item.assignToId == "")
-                                            {
-                                                if (item.LeadStatus == "1")
-                                                {
-
-                                                    <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-                                                    <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a>
-                                                    <a href="/admin/add_quotation?leadId=@(item.leadId)" title="Send Quotation"><img src="~/Contents/images/quotation_send.jpg" style="width:30px; height:30px" /></a> @*|| <span class="transferToReportManager"> <i class="fa fa-share-square leadtransferTo" aria-hidden="true"></i></span>*@
-                                                }
-                                                else
-                                                {
-                                                    <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-
-                                                    <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a>
-
-                                                    <a href="/admin/FollowUpLeadResponse?leadId=@(item.leadId)"><span class="followup" title="Follow up with client"> <i class="fa fa-rocket followupwithclient" aria-hidden="true"></i></span></a>@*|| <span class="transferToReportManager"> <i class="fa fa-share-square leadtransferTo" aria-hidden="true"></i></span>*@
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-
-                                                <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (@item.assignToId == Session["employeeId"].ToString() | @item.assignToId == "")
-                                            {
-                                                <a href="/admin/generateLeadBySalesman?id=@(item.leadId)" title="Generate Lead"> <img src="~/Contents/images/edit-icon.png" style="width:15px; height:15px" /></a>
-                                                <a href="/admin/viewLeadsheetstatusById?leadId=@(item.leadId)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a> @*|   <span class="re-assign"> <i class="fas fa-share leadBacktransfer"></i></span>*@
-                                            }
-                                            else
-                                            {
-                                                <a href="/admin/viewLeadsheetstatusById?leadId=@(item.leadId)" class="btn btn-sm showleadsheetstaus"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
-
-                                            }
-                                        }
+                                        <a href="/admin/viewresponsebyleadId?leadId=@(item.leadId)" class="btn btn-sm showLeadFollowUpdetail" style="color:darkcyan"><i class="fa fa-history" style="font-size:16px"></i></a> ||
+                                        <a href="/admin/viewleaddeatailById?leadId=@(item.leadId)" class="btn btn-sm showLeaddetail"><img src="~/Contents/images/view.jpg" style="width:15px; height:15px" /></a>
                                     </td>
 
-                                    @*@if (@item.generateStatus == "0")
-                                        {
-                                            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
-                                        }
-                                        else
-                                        {
-                                            <td><span style="color:black" class="disabled">Generated </span> </td>
+                                                    @*@if (@item.generateStatus == "0")
+        {
+            <td> <a href="/admin/generateLeadBySalesman?id=@(item.id)"> <i class="fa fa-rocket" aria-hidden="true"></i></a> || <a href="/admin/addLeadManualyBySalesMan?id=@(item.id)"><i class="fas fa-edit"></i></a> || <a href="/admin/delet_leadBySalesman?id=@(item.id)"><i class="fas fa-regular fa-trash"></i></a></td>
+        }
+        else
+        {
+            <td><span style="color:black" class="disabled">Generated </span> </td>
 
-                                        }*@
-                                </tr>
+        }*@
+                                                </tr>
                                 i++;
                             }
 
