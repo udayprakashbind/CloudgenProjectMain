@@ -38,6 +38,7 @@ namespace CloudgenProject.Models.admin
                 cg.total_pi = Convert.ToInt32(dr["total_pi"]);
                 cg.total_sales_book = Convert.ToInt32(dr["total_sales_book"]);
                 cg.total_vendor = Convert.ToInt32(dr["total_vendor"]);
+                cg.total_quotation = Convert.ToInt32(dr["total_quotation"]);
             }
             return cg;
         }
@@ -62,9 +63,10 @@ namespace CloudgenProject.Models.admin
              //   cg.total_product = Convert.ToInt32(dr["total_product"]);
                 cg.total_lead = Convert.ToInt32(dr["total_lead"]);
                 cg.TotalTodayFollowUp = Convert.ToInt32(dr["TotalTodayFollowUp"]);
-             //   cg.total_pi = Convert.ToInt32(dr["total_pi"]);
-             //   cg.total_sales_book = Convert.ToInt32(dr["total_sales_book"]);
-             //   cg.total_vendor = Convert.ToInt32(dr["total_vendor"]);
+                cg.total_quotation = Convert.ToInt32(dr["total_quotation"]);
+                //   cg.total_pi = Convert.ToInt32(dr["total_pi"]);
+                //   cg.total_sales_book = Convert.ToInt32(dr["total_sales_book"]);
+                //   cg.total_vendor = Convert.ToInt32(dr["total_vendor"]);
             }
             return cg;
         }
@@ -85,7 +87,7 @@ namespace CloudgenProject.Models.admin
                // cg.total_employee = Convert.ToInt32(dr["total_employee"]);
               //  cg.total_branch = Convert.ToInt32(dr["total_branch"]);
                // cg.total_po = Convert.ToInt32(dr["total_po"]);
-              //  cg.total_product = Convert.ToInt32(dr["total_product"]);
+                cg.total_quotation = Convert.ToInt32(dr["total_quotation"]);
                cg.total_lead = Convert.ToInt32(dr["total_lead"]);
              //  cg.TotalFollowUp = Convert.ToInt32(dr["TotalFollowUp"]);
                cg.TotalTodayFollowUp = Convert.ToInt32(dr["TotalTodayFollowUp"]);

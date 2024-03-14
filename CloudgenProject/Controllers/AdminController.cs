@@ -45,7 +45,8 @@ namespace CloudgenProject.Controllers
                 {
                     leaddetails.Add(new CloudgenProject.Models.admin.leadstatusmodel()
                     {
-                        leadId = sdr["LeadId"].ToString(),
+                        //leadId = sdr["LeadId"].ToString(),
+                        leadId = sdr["id"].ToString(),
                         response = sdr["response"].ToString(),
                         status = sdr["status"].ToString(),
                         next_follow_up_date = sdr["next_follow_up_date"].ToString(),
@@ -1523,7 +1524,7 @@ namespace CloudgenProject.Controllers
             SqlHelper.ExecuteNonQuery(CommandType.Text, str2);
 
 
-            return RedirectToAction("view_lead");
+            return RedirectToAction("viewleadsheetlist");
         }
 
 
@@ -1619,6 +1620,11 @@ namespace CloudgenProject.Controllers
                     cmd.Parameters.AddWithValue("@uploadedbytype", leaduploadedbytype);
                     cmd.Parameters.AddWithValue("@assignStatus", leadStatus.assignStatus);
                     cmd.Parameters.AddWithValue("@generateStatus", 0);
+                    if (leaduploadedbytype == "sales")
+                    {
+                        cmd.Parameters.AddWithValue("@assignTo", leaduploadedby);
+                        cmd.Parameters.AddWithValue("@assignBy", leaduploadedby);
+                    }
 
                     cmd.Parameters.AddWithValue("@Action", "insert_leadsheet");
 

@@ -6,6 +6,9 @@
 }
 <link href="~/Contents/css/model.css" rel="stylesheet" />
 <style>
+    .content-body .container-fluid {
+        padding: 0 30px 15px 30px;
+    }
     .custom-card {
         border: none;
         border-radius: 10px;
@@ -28,7 +31,7 @@
     }
 
     .custom-card .card-title {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
         color: black;
     }
@@ -48,7 +51,7 @@
     }
 
     .custom-card .fa {
-        font-size: 52px;
+        font-size: 42px;
         /*        margin-top: 10px;
     */ /*color: #fff;*/ /* Icon color */
         transition: all 0.3s ease; /* Icon movement transition */
@@ -183,61 +186,62 @@
 
 <div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-4 col-sm-4">
             <a href="/Admin/viewleadsheetlist" class="custom-card-link">
                 <div class="card custom-card custom-gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title">Lead List </h3>
+                        <h6 class="card-title">Lead List   <span style="font-size: 12px;color: #182ca7">(@Model.total_lead)</span> <span class="float-right display-5 opacity-5"><i class="fa fa-address-book" style="color: #ff5e5e"></i></span></h6>
                         <div class="d-inline-block">
-                            <h5>@Model.total_lead</h5>
+
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-address-book" style="color: #ff5e5e"></i></span>
+
                     </div>
                 </div>
             </a>
         </div>
 
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-4 col-sm-4">
             <a href="/admin/Todayfollowuplist" class="custom-card-link">
                 <div class="card custom-card custom-gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title">Today Follow Up</h3>
+                        <h6 class="card-title">Today Follow up  <span style="font-size: 12px; color: #182ca7">(@Model.TotalTodayFollowUp)</span> <span class="float-right display-5 opacity-5"><i class="fa fa-bell" style="color: #09794f "></i></span></h6>
                         <div class="d-inline-block">
-                            <h5>@Model.TotalTodayFollowUp</h5>
+
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-bell" style="color: #857105"></i></span>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-4 col-sm-4">
+            <a href="/admin/view_quotation" class="custom-card-link">
+                <div class="card custom-card custom-gradient-1">
+                    <div class="card-body">
+                        <h6 class="card-title">Quotation List <span style="font-size: 12px; color: #182ca7">(@Model.total_quotation)</span> <span class="float-right display-5 opacity-5"><i class="fa fa-book" style="color: #0f4881 "></i></span></h6>
+                        <div class="d-inline-block">
+
+                        </div>
+
                     </div>
                 </div>
             </a>
         </div>
         <!--<div class="col-lg-3 col-sm-6">
-            <a href="/admin/addLeadManualyBySalesMan" class="custom-card-link">
-                <div class="card custom-card custom-gradient-1">
-                    <div class="card-body">
-                        <h3 class="card-title">Add Lead </h3>
-                        <div class="d-inline-block">
-                            <h2>-->
+        <a href="/admin/addLeadManualyBySalesMan" class="custom-card-link">
+            <div class="card custom-card custom-gradient-1">
+                <div class="card-body">
+                    <h3 class="card-title">Add Lead </h3>
+                    <div class="d-inline-block">
+                        <h2>-->
         @*@Model.total_pi*@
         <!--</h2>
-                        </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-bar-chart" style="color: #76003b"></i></span>
                     </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-bar-chart" style="color: #76003b"></i></span>
                 </div>
-            </a>
-        </div>-->
-        <div class="col-lg-4 col-sm-6">
-            <a href="/admin/view_quotation" class="custom-card-link">
-                <div class="card custom-card custom-gradient-1">
-                    <div class="card-body">
-                        <h3 class="card-title">Quotation List </h3>
-                        <div class="d-inline-block">
-                            <h2>@*@Model.total_po*@</h2>
-                        </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-heart" style="color: #0f4881"></i></span>
-                    </div>
-                </div>
-            </a>
-        </div>
+            </div>
+        </a>
+    </div>-->
     </div>
 
 
@@ -335,7 +339,7 @@
             @*<div class="card">
                 <div class="card-body" style="padding-top:0px" ;>*@
             <div class="form-group row justify-content-md-center" style="background-color: rgba(144, 104, 190,0.7);">
-                <h3 class="adv-title" style="color: #fff ;padding: 2px 0 2px 0;">Lead List</h3>
+                <span style="color: #fff ;padding: 2px 0 2px 0; font-size:18px">Lead List</span>
             </div>
             <table>
                 <tr>
